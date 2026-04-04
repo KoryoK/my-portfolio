@@ -314,7 +314,7 @@ export default function App() {
       )}
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen flex items-center px-6 md:px-12 overflow-hidden">
+      <section id="home" className="relative h-screen flex items-center px-6 md:px-12 overflow-hidden pt-20 md:pt-0">
         <div className="max-w-7xl w-full grid md:grid-cols-[3fr_2fr] gap-0 items-center">
 
           {/* Left: Identity */}
@@ -325,7 +325,7 @@ export default function App() {
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <span className="text-accent font-semibold tracking-[0.3em] uppercase mb-6 block">{t.hero.label}</span>
-              <h1 className={`text-[clamp(3.5rem,10vw,9rem)] font-extrabold mb-10 ${isJa ? 'leading-[1.1]' : 'leading-[0.85]'}`}>
+              <h1 className={`text-[clamp(3rem,7vw,6.5rem)] font-extrabold mb-10 ${isJa ? 'leading-[1.1]' : 'leading-[0.85]'}`}>
                 {isJa ? (
                   <>
                     分析<br />
