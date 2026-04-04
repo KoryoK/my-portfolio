@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;600;800&family=Noto+Sans+JP:wght@300;400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-bg-dark: #0c0c0c;
+  --color-bg-dark-alt: #141414;
+  --color-bg-light: #f0f4f9;
+  --color-text-light: #e8ecf2;
+  --color-text-dark: #1a1a2e;
+  --color-text-muted: #636a7a;
+  --color-accent: #2563eb;
+  --color-accent-alt: #1d4ed8;
+}
+
+@layer base {
+  html {
+    @apply antialiased scroll-smooth;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "palt";
+    letter-spacing: 0.06em;
+    line-height: 1.8;
+  }
+
+  h1, h2, h3, h4 {
+    @apply tracking-tighter leading-none;
+  }
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+.reveal-text {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
