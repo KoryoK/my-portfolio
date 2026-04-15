@@ -62,6 +62,20 @@ export const projects: Project[] = [
     type: "ai",
   },
   {
+    id: 6,
+    title: "Unbias JD",
+    description: "Web app that scans job adverts for biased or exclusionary language and suggests neutral rewrites. Combines a lexicon scan with a contextual LLM pass via Vercel AI Gateway. English and Japanese, stateless.",
+    description_ja: "求人票の偏った・排他的な表現を検出し、中立的な言い換えを提案するWebアプリ。辞書ベースのスキャンと、Vercel AI Gatewayを通した文脈解析LLMを組み合わせ。英語・日本語対応、データは保存しない設計。",
+    images: [
+      "/screenshots/unbias-cv-1.png",
+      "/screenshots/unbias-cv-2.png",
+      "/screenshots/unbias-cv-3.png",
+    ],
+    tags: ["Next.js 16", "React 19", "AI SDK 6", "Vercel AI Gateway", "BotID", "Tailwind 4", "shadcn/ui", "TypeScript"],
+    link: "https://unbias-cv.vercel.app/",
+    type: "ai",
+  },
+  {
     id: 5,
     title: "KPI Management Dashboard",
     description: "Production-ready KPI dashboard that dynamically visualizes weekly and monthly business metrics using Google Sheets as a database.",
