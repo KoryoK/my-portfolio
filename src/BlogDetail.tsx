@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X } from 'lucide-react';
+import { X, ArrowUpRight } from 'lucide-react';
 import type { BlogPost } from './data/blog';
 
 interface BlogDetailProps {
@@ -94,6 +94,20 @@ export default function BlogDetail({ post, onClose, lang }: BlogDetailProps) {
                 </span>
               ))}
             </div>
+
+            {post.link && (
+              <a
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase border border-text-light/30 px-5 py-3 rounded-full hover:bg-accent hover:border-accent hover:text-white transition-all duration-300"
+              >
+                {isJa
+                  ? post.linkLabel_ja ?? '元記事を読む'
+                  : post.linkLabel ?? 'Read original'}
+                <ArrowUpRight size={16} />
+              </a>
+            )}
           </motion.article>
         </motion.div>
       )}
