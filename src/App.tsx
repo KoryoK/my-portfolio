@@ -10,8 +10,11 @@ import { works } from './data/works';
 import type { Work } from './data/works';
 import { projects } from './data/projects';
 import type { Project } from './data/projects';
+import { posts } from './data/blog';
+import type { BlogPost } from './data/blog';
 import WorkDetail from './WorkDetail';
 import ProjectDetail from './ProjectDetail';
+import BlogDetail from './BlogDetail';
 import ContactForm from './ContactForm';
 
 // ── Translations ──────────────────────────────────────────────────────────────
@@ -23,6 +26,7 @@ const translations = {
       home: 'ホーム',
       works: '実績',
       showcase: '開発実績',
+      blog: 'ブログ',
       about: 'プロフィール',
       contact: 'コンタクト',
     },
@@ -54,13 +58,20 @@ const translations = {
       subtitle: '自作アプリ・GAS・AIツールのポートフォリオ。',
       viewProject: 'プロジェクトを見る',
     },
+    blog: {
+      title: 'ブログ',
+      subtitle: 'データ・AI・リーダーシップの現場から。',
+      readMore: '続きを読む',
+      minRead: '分',
+      all: '全ての記事',
+    },
     contact: {
       title: 'コンタクト',
       body: 'データ戦略、AIエンジニアリング、リーダーシップに関するご相談、受付中。あなたのビジネスに「自分らしさ」と「効率」を。',
       reply: '24時間以内にご返信します。',
       cta: 'お問い合わせはこちら →',
     },
-    footer: { career: '実績', showcase: '開発実績', profile: 'プロフィール' },
+    footer: { career: '実績', showcase: '開発実績', blog: 'ブログ', profile: 'プロフィール' },
   },
   en: {
     nav: {
@@ -69,6 +80,7 @@ const translations = {
       home: 'Home',
       works: 'Works',
       showcase: 'Showcase',
+      blog: 'Journal',
       about: 'About',
       contact: 'Contact',
     },
@@ -100,13 +112,20 @@ const translations = {
       subtitle: 'Apps, GAS projects, and AI tools I have built.',
       viewProject: 'View project',
     },
+    blog: {
+      title: 'Journal',
+      subtitle: 'Field notes on data, AI, and leadership.',
+      readMore: 'Read more',
+      minRead: 'min read',
+      all: 'All posts',
+    },
     contact: {
       title: 'Connect',
       body: "Open for consulting on data strategy, AI engineering, and leadership. Let's bring uniqueness and efficiency to your business.",
       reply: 'I reply within 24 hours.',
       cta: 'Start a conversation →',
     },
-    footer: { career: 'Career', showcase: 'Showcase', profile: 'Profile' },
+    footer: { career: 'Career', showcase: 'Showcase', blog: 'Journal', profile: 'Profile' },
   },
 } as const;
 
@@ -160,6 +179,7 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [selectedWork, setSelectedWork] = useState<Work | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
 
   const t = translations[lang];
   const isJa = lang === 'ja';
@@ -191,8 +211,15 @@ export default function App() {
       const work = works.find(w => w.id === id) ?? null;
       if (work) setSelectedWork(work);
     }
+    if (hash.startsWith('#post-')) {
+      const slug = hash.replace('#post-', '');
+      const post = posts.find(p => p.slug === slug) ?? null;
+      if (post) setSelectedPost(post);
+    }
     const handlePop = () => {
-      if (!window.location.hash.startsWith('#work-')) setSelectedWork(null);
+      const h = window.location.hash;
+      if (!h.startsWith('#work-')) setSelectedWork(null);
+      if (!h.startsWith('#post-')) setSelectedPost(null);
     };
     window.addEventListener('popstate', handlePop);
     return () => window.removeEventListener('popstate', handlePop);
@@ -202,6 +229,7 @@ export default function App() {
     ['home', '#home'],
     ['works', '#works'],
     ['showcase', '#showcase'],
+    ['blog', '#blog'],
     ['about', '#about'],
     ['contact', '#contact'],
   ] as [keyof typeof t.nav, string][];
@@ -461,6 +489,9 @@ export default function App() {
       {/* Project Detail Overlay */}
       <ProjectDetail project={selectedProject} onClose={() => setSelectedProject(null)} lang={lang} />
 
+      {/* Blog Detail Overlay */}
+      <BlogDetail post={selectedPost} onClose={() => setSelectedPost(null)} lang={lang} />
+
       {/* About Section */}
       <section id="about" className="py-32 px-6 md:px-12 bg-bg-light text-text-dark">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-20">
@@ -651,6 +682,74 @@ export default function App() {
         </div>
       </section>
 
+      {/* Blog / Journal Section */}
+      <section id="blog" className="py-32 px-6 md:px-12 bg-bg-dark">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
+          >
+            <div>
+              <h2 className="text-[clamp(2.5rem,6vw,6rem)] font-bold tracking-tighter uppercase leading-none mb-4">
+                {t.blog.title}
+              </h2>
+              <p className="text-text-muted text-sm uppercase tracking-widest">{t.blog.subtitle}</p>
+            </div>
+            <span className="text-xs font-mono text-text-muted uppercase tracking-widest">
+              {posts.length} {isJa ? '記事' : 'posts'}
+            </span>
+          </motion.div>
+
+          <div className="flex flex-col">
+            {posts.map((post, i) => (
+              <motion.article
+                key={post.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+                className="group cursor-pointer border-t border-text-light/10 last:border-b py-8 md:py-10 grid grid-cols-1 md:grid-cols-[160px_1fr_auto] gap-4 md:gap-8 items-start hover:bg-text-light/[0.02] transition-colors duration-300 px-2 md:px-4 -mx-2 md:-mx-4"
+                onClick={() => setSelectedPost(post)}
+              >
+                <div className="text-xs font-mono text-text-muted uppercase tracking-widest flex flex-col gap-1">
+                  <span className="text-accent">
+                    {isJa ? post.category_ja : post.category}
+                  </span>
+                  <time dateTime={post.date}>
+                    {new Date(post.date).toLocaleDateString(isJa ? 'ja-JP' : 'en-GB', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </div>
+
+                <div className="max-w-2xl">
+                  <h3 className="text-xl md:text-2xl font-bold tracking-tight group-hover:text-accent transition-colors duration-300 mb-3 leading-snug">
+                    {isJa ? post.title_ja : post.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-text-muted leading-relaxed">
+                    {isJa ? post.excerpt_ja : post.excerpt}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-3 text-xs font-mono text-text-muted uppercase tracking-widest">
+                  <span>
+                    {post.readingTime} {t.blog.minRead}
+                  </span>
+                  <ArrowUpRight
+                    size={18}
+                    className="text-text-muted group-hover:text-accent transition-all duration-300 translate-x-[-4px] group-hover:translate-x-0"
+                  />
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-32 px-6 md:px-12 bg-accent text-white">
         <div className="max-w-5xl mx-auto">
@@ -713,6 +812,7 @@ export default function App() {
           <div className="flex gap-8 text-xs uppercase tracking-widest text-text-muted">
             <a href="#works" className="hover:text-text-light transition-colors">{t.footer.career}</a>
             <a href="#showcase" className="hover:text-text-light transition-colors">{t.footer.showcase}</a>
+            <a href="#blog" className="hover:text-text-light transition-colors">{t.footer.blog}</a>
             <a href="#about" className="hover:text-text-light transition-colors">{t.footer.profile}</a>
           </div>
           <div className="text-xs text-text-muted uppercase">© {new Date().getFullYear()}. SEIZE THE CHANCE.</div>
