@@ -19,6 +19,40 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    id: 2,
+    slug: "unbias-jd-hiring-language",
+    title: "Surfacing Bias in Japanese Job Ads — Building Unbias JD",
+    title_ja: "求人票に潜む「偏った言葉」を可視化する — Unbias JDをつくった話",
+    date: "2026-04-17",
+    category: "Product / AI",
+    category_ja: "プロダクト / AI",
+    readingTime: 5,
+    excerpt:
+      "English has Gender Decoder. Japanese had nothing. Unbias JD scans Japanese and English job adverts for exclusionary language, scores the bias, and suggests neutral rewrites — no account, no data stored.",
+    excerpt_ja:
+      "英語圏にはGender Decoderがあるが、日本語の求人票を検査できるツールはほぼ存在しなかった。Unbias JDは日英の求人票から排他的な表現を検出し、バイアススコアと中立的な言い換えを提示する。アカウント不要、データは保存しない設計。",
+    body: [
+      "Hiring across the UK and Japan showed me how much unconscious bias lives in the language of job ads. Phrases like 「若手の営業マン」—young, male, salesperson rolled into one—filter candidates on attributes that have nothing to do with the job. The writer rarely notices. The applicant always does.",
+      "English has had research tools for this for a decade (Gaucher et al., 2011; the Gender Decoder). Japanese, which carries its own age and gender markers in common phrases, had almost nothing. That gap is what Unbias JD fills.",
+      "The tool scans a pasted job advert, flags terms across six bias categories (age, gender, physical ability, education, ethnicity, and more), shows a bias score from 0 to 100, and suggests neutral rewrites. Edit the text in place, re-scan, and watch the score drop — a fast feedback loop for the writer.",
+      "Three design choices mattered. No accounts — writing a job ad should not require a signup. No data retention — pasted text is analysed in memory and discarded. Two-layer detection — a curated lexicon (built on MHLW's fair-hiring guidelines for Japanese, the UK Equality Act and academic research for English) combined with a contextual LLM pass via Vercel AI Gateway, so we catch both dictionary hits and subtler phrasing.",
+      "Stack: Next.js 16, React 19, TypeScript, Tailwind 4, shadcn/ui, Vercel AI Gateway, BotID, deployed on Vercel. Stateless by design — the hardest part was not the code, it was deciding what not to store.",
+      "The honest limit, spelled out on the About page: a dictionary cannot read context perfectly, and a score is a prompt for reflection, not a verdict. The final judgement stays with the person writing the advert. But even making bias visible — turning an invisible default into a highlighted word — changes what writers choose next. That is the whole point.",
+    ],
+    body_ja: [
+      "英国と日本、両方で採用に関わる中で気づいたのは、求人票の言葉にどれだけ無意識のバイアスが潜んでいるかということ。「若手の営業マン」のような表現には、年齢・性別・職種イメージが一度に埋め込まれており、職務遂行能力とは無関係な属性で応募者をふるいにかけてしまう。書き手はほぼ気づかない。応募者は必ず気づく。",
+      "英語圏にはGender Decoderのような研究ベースのツールが10年前からある（Gaucher et al., 2011）。一方で日本語には、年齢・性別の含意が日常表現に埋め込まれているにもかかわらず、検査ツールはほぼ存在しなかった。Unbias JDはこのギャップを埋めるために作った。",
+      "貼り付けた求人票をスキャンし、6つのバイアスカテゴリ（年齢・性別・身体能力・学歴・民族性ほか）で該当語をハイライト。0〜100のバイアススコアを算出し、中立的な言い換え候補を提示する。テキストをその場で編集して再解析すれば、スコアの変化がその場で見える——書き手にとっての高速フィードバックループを狙った。",
+      "設計上の3つの判断：アカウント不要——求人票を書くのにサインアップが要るのはおかしい。データ非保存——貼り付けたテキストはメモリ上で解析し、保存しない。二層検出——辞書ベース（日本語は厚労省「公正な採用選考」指針、英語はUK Equality Actと学術研究を基盤）と、Vercel AI Gatewayを通した文脈解析LLMを組み合わせ、辞書ヒットに加えて微妙な言い回しも拾う。",
+      "技術スタックはNext.js 16、React 19、TypeScript、Tailwind 4、shadcn/ui、Vercel AI Gateway、BotID、Vercelデプロイ。ステートレス設計。コードよりも「何を保存しないか」を決めることの方が難しかった。",
+      "限界も正直に明記してある：辞書は文脈を完璧には読めず、スコアは判定ではなく「立ち止まるきっかけ」にすぎない。最終的な判断は常に書き手に委ねられる。それでも、不可視だった言葉をハイライトするだけで、次に選ぶ語が変わる。その一点を狙ったツール。",
+    ],
+    tags: ["Next.js 16", "AI SDK 6", "Vercel AI Gateway", "Fairness", "HR"],
+    link: "https://note.com/brainy_phlox8948/n/n0a15d75c6eff",
+    linkLabel: "Read full article on note",
+    linkLabel_ja: "noteで全文を読む",
+  },
+  {
     id: 1,
     slug: "voice-notion-ai-second-brain",
     title: "Building a Second Brain — Voice → Notion → AI Workflow",
