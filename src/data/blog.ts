@@ -15,6 +15,9 @@ export interface BlogPost {
   link?: string;
   linkLabel?: string;
   linkLabel_ja?: string;
+  appLink?: string;
+  appLinkLabel?: string;
+  appLinkLabel_ja?: string;
 }
 
 export const posts: BlogPost[] = [
@@ -51,6 +54,9 @@ export const posts: BlogPost[] = [
     link: "https://note.com/brainy_phlox8948/n/n0a15d75c6eff",
     linkLabel: "Read full article on note",
     linkLabel_ja: "noteで全文を読む",
+    appLink: "https://unbias-cv.vercel.app/",
+    appLinkLabel: "Try Unbias JD",
+    appLinkLabel_ja: "Unbias JDを試す",
   },
   {
     id: 1,

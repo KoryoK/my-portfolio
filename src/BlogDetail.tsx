@@ -95,18 +95,35 @@ export default function BlogDetail({ post, onClose, lang }: BlogDetailProps) {
               ))}
             </div>
 
-            {post.link && (
-              <a
-                href={post.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase border border-text-light/30 px-5 py-3 rounded-full hover:bg-accent hover:border-accent hover:text-white transition-all duration-300"
-              >
-                {isJa
-                  ? post.linkLabel_ja ?? '元記事を読む'
-                  : post.linkLabel ?? 'Read original'}
-                <ArrowUpRight size={16} />
-              </a>
+            {(post.link || post.appLink) && (
+              <div className="mt-8 flex flex-wrap gap-3">
+                {post.link && (
+                  <a
+                    href={post.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase border border-text-light/30 px-5 py-3 rounded-full hover:bg-accent hover:border-accent hover:text-white transition-all duration-300"
+                  >
+                    {isJa
+                      ? post.linkLabel_ja ?? '元記事を読む'
+                      : post.linkLabel ?? 'Read original'}
+                    <ArrowUpRight size={16} />
+                  </a>
+                )}
+                {post.appLink && (
+                  <a
+                    href={post.appLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase border border-accent bg-accent text-white px-5 py-3 rounded-full hover:bg-transparent hover:text-accent transition-all duration-300"
+                  >
+                    {isJa
+                      ? post.appLinkLabel_ja ?? 'アプリを試す'
+                      : post.appLinkLabel ?? 'Try the app'}
+                    <ArrowUpRight size={16} />
+                  </a>
+                )}
+              </div>
             )}
           </motion.article>
         </motion.div>
