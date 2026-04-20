@@ -6,10 +6,34 @@ export interface Project {
   images: string[]; // first image used as card thumbnail
   tags: string[];
   link?: string;
+  linkLabel?: string;
+  linkLabel_ja?: string;
+  appLink?: string;
+  appLinkLabel?: string;
+  appLinkLabel_ja?: string;
   type: 'webapp' | 'gas' | 'ai' | 'dashboard' | 'mobile';
 }
 
 export const projects: Project[] = [
+  {
+    id: 7,
+    title: "Voice → Notion → AI Classifier",
+    description: "Soundcore Work × Notion × Claude automation pipeline. Voice recordings are auto-classified into Diary, Ideas, and To-dos, with monthly summaries generated on top. Idempotent design via a Processed Log DB prevents duplicates.",
+    description_ja: "Soundcore Work × Notion × Claudeの自動化パイプライン。音声録音を「日記／アイデア／To-do」に自動仕分けし、月次サマリーまで生成。Processed Log DBによる冪等性設計で重複登録を防止。",
+    images: [
+      "/screenshots/soundcore-ai-1.png",
+      "/screenshots/soundcore-ai-2.png",
+      "/screenshots/soundcore-ai-3.png",
+    ],
+    tags: ["Make.com", "Notion", "Claude API", "Soundcore Work", "No-code"],
+    link: "https://note.com/brainy_phlox8948/n/ne29425e9b50f",
+    linkLabel: "Read article on note",
+    linkLabel_ja: "noteで記事を読む",
+    appLink: "https://eu1.make.com/public/shared-scenario/4oPg7ud7jQI/notion-page-categorise",
+    appLinkLabel: "Copy Make.com scenario",
+    appLinkLabel_ja: "Make.comシナリオをコピー",
+    type: "ai",
+  },
   {
     id: 1,
     title: "Personal Cashflow App",

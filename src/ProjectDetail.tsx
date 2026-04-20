@@ -162,16 +162,35 @@ export default function ProjectDetail({ project, onClose, lang }: ProjectDetailP
                 ))}
               </div>
 
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase hover:text-accent transition-colors"
-                >
-                  {isJa ? 'プロジェクトを見る' : 'View project'}
-                  <ArrowUpRight size={16} />
-                </a>
+              {(project.link || project.appLink) && (
+                <div className="flex flex-wrap gap-3">
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase border border-text-light/30 px-5 py-3 rounded-full hover:bg-accent hover:border-accent hover:text-white transition-all duration-300"
+                    >
+                      {isJa
+                        ? project.linkLabel_ja ?? 'プロジェクトを見る'
+                        : project.linkLabel ?? 'View project'}
+                      <ArrowUpRight size={16} />
+                    </a>
+                  )}
+                  {project.appLink && (
+                    <a
+                      href={project.appLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase border border-accent bg-accent text-white px-5 py-3 rounded-full hover:bg-transparent hover:text-accent transition-all duration-300"
+                    >
+                      {isJa
+                        ? project.appLinkLabel_ja ?? 'アプリを試す'
+                        : project.appLinkLabel ?? 'Try the app'}
+                      <ArrowUpRight size={16} />
+                    </a>
+                  )}
+                </div>
               )}
             </div>
           </motion.div>
