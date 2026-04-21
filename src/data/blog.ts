@@ -22,6 +22,40 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    id: 3,
+    slug: "aporix-live-on-app-store",
+    title: "Aporix Ships — A Marketplace for Ideas, Validated Before Code",
+    title_ja: "Aporix、App Storeで公開 — コードを書く前にアイデアを検証するマーケットプレイス",
+    date: "2026-04-21",
+    category: "Product / Mobile",
+    category_ja: "プロダクト / モバイル",
+    readingTime: 4,
+    excerpt:
+      "Most ideas never get built because the people who have them and the people who can build them never meet. Aporix is an iOS app that fixes that — idea owners post, developers discover, and empathy counts turn into a public demand score. After months of building and an Apple review cycle, Aporix is now live on the App Store.",
+    excerpt_ja:
+      "ほとんどのアイデアが形にならないのは、アイデアを持つ人と、それを作れる人が出会わないから。Aporixはその断絶を埋めるために作ったiOSアプリ——アイデアオーナーが投稿し、開発者が発見し、共感数が公開の需要スコアに変わる。数ヶ月の開発とApple審査を経て、ついにApp Storeで公開された。",
+    body: [
+      "Aporix is live on the App Store. This is the short version of a longer build — a mobile-first marketplace where ideas don't die in notebooks because no one who could build them ever sees them. The premise: separate the idea from the implementation, and let the market speak first.",
+      "In my freelance work I sit in both seats. Clients show up with ideas but no engineering skill; engineers I know have skill but no idea that excites them enough to build. The bridge between the two is rarely price — it's validation. No one wants to build for free, and no one wants to pay to build something that might have zero demand. Aporix makes that validation the first step, not the last.",
+      "The core mechanic is the empathy count. When an idea is posted, other users can tap \"I want this\" — not a like, not a bookmark, a public signal of demand. The number is visible on every idea card, and developers browse ranked by that signal. Ideas that resonate climb; ideas that don't, stay quiet — which is also information. It turns gut feel into a tiny market.",
+      "Stack: React Native (Expo) for iOS, a shared TypeScript Turborepo monorepo so the landing-page Next.js app and the mobile app reuse the same domain types, Supabase for auth / data / storage, and RevenueCat for subscription entitlements. The monorepo was the single biggest structural decision — \"add a field\" becomes one edit, not a race condition between two codebases that will have drifted by Tuesday.",
+      "Shipping to the App Store required a different rigor than shipping a web app. Privacy disclosures have to match what the code actually does. In-app purchase flows must be testable by a reviewer whose sandbox does not mirror a real user. User-generated content needs a moderation path from day one, not bolted on later. None of this is surprising in retrospect — but nothing about web deploys prepares you for it. The review cycle is deliberately slow, and unforgiving about any gap between what an app claims and what it does.",
+      "What I'm watching now: how early users actually post — do they describe ideas in enough detail for a developer to act, or do they drop one-liners? How empathy counts distribute — do a few ideas dominate, or is attention spread? And whether the move from \"I want this\" to an actual build happens without me stitching it manually. The app is live; the real product starts now. Download link below — feedback of any kind is genuinely welcome.",
+    ],
+    body_ja: [
+      "AporixがApp Storeで公開された。これはここまでの開発の短いまとめ——モバイルファーストのマーケットプレイスで、ノートの中に埋もれて消えていくアイデアを、それを作れる誰かの目に届ける場所。前提は一つ：アイデアと実装を切り離し、市場の反応を先に聞く。",
+      "フリーランスで仕事をしていると、両側に座る機会がある。アイデアを持ってやってくるクライアントには実装力がなく、周りのエンジニアには実装力があっても、本気で作りたいアイデアには巡り会えていない。この断絶を埋めるものは、意外にも値段ではなく「検証」だ。誰も無償で作りたくはないし、誰も需要ゼロのものに金を払いたくない。Aporixはその検証を最後ではなく最初に置いた。",
+      "中核の仕組みは「共感数」。アイデアが投稿されると、他のユーザーは「これ欲しい」をタップできる——いいねやブックマークではなく、需要の公開シグナルだ。この数値は全てのアイデアカードに表示され、開発者はこのシグナル順でアイデアを閲覧する。響いたものは上がり、響かないものは静かなまま——これもまた情報だ。直感を小さな市場に変える仕組み。",
+      "技術スタックはReact Native（Expo）、Next.jsのランディングとモバイルアプリがドメイン型を共有するためのTurborepoモノレポ、Supabaseで認証・データ・ストレージ、RevenueCatでサブスク管理。最も効いた構造判断はモノレポだった——「フィールドを追加する」が一つの編集で済み、二つのコードベースが火曜日にはすでにズレている、という事態を避けられる。",
+      "App Storeに出荷するのは、Webアプリを出すのとは別種の厳密さを要求される。プライバシー開示はコードの挙動と一致していなければならない。アプリ内課金のフローは、実ユーザーを再現しないサンドボックスでもレビュアーが検証できるように作る必要がある。ユーザー投稿コンテンツは後付けではなく「初日」からモデレーション経路を持っていなければならない。振り返れば当然の要件だが、Webデプロイでは身につかない作法だ。審査サイクルは意図的に遅く、アプリが主張していることと実挙動のズレに対して妥協がない。",
+      "これから見ていくもの：初期ユーザーが実際にどう投稿するか——開発者が動ける程度に詳細を書いてくれるのか、一行で終わるのか。共感数の分布——一部のアイデアが総取りするのか、注目は分散するのか。そして「欲しい」から「実際に作られる」への接続が、自分が手で繋がなくても起きるかどうか。アプリは公開された。本当のプロダクトはここから始まる。ダウンロードリンクは下記——フィードバックはどんな形でも歓迎。",
+    ],
+    tags: ["React Native", "Expo", "Supabase", "RevenueCat", "Turborepo", "iOS", "App Store"],
+    appLink: "https://apps.apple.com/app/aporix/id6760210339",
+    appLinkLabel: "Download on the App Store",
+    appLinkLabel_ja: "App Storeでダウンロード",
+  },
+  {
     id: 2,
     slug: "unbias-jd-hiring-language",
     title: "Surfacing Bias in Japanese Job Ads — Building Unbias JD",
