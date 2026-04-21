@@ -63,13 +63,16 @@ export const projects: Project[] = [
   {
     id: 3,
     title: "Aporix",
-    description: "Platform connecting idea owners with developers, with built-in market validation. Visualises empathy count as a demand score. App Store submission in progress.",
-    description_ja: "アイデアオーナーと開発者をつなぎ、実装前の市場検証もできるプラットフォーム。共感数を需要スコアとして可視化。App Store申請中。",
+    description: "Platform connecting idea owners with developers, with built-in market validation. Visualises empathy count as a demand score. Now available on the App Store.",
+    description_ja: "アイデアオーナーと開発者をつなぎ、実装前の市場検証もできるプラットフォーム。共感数を需要スコアとして可視化。App Storeで公開中。",
     images: [
       "/screenshots/aporix-1.png",
       "/screenshots/aporix-2.png",
     ],
     tags: ["React Native", "Expo", "Next.js", "TypeScript", "Supabase", "Turborepo", "RevenueCat"],
+    appLink: "https://apps.apple.com/app/aporix/id6760210339",
+    appLinkLabel: "Download on the App Store",
+    appLinkLabel_ja: "App Storeでダウンロード",
     type: "mobile",
   },
   {
