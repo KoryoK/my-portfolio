@@ -80,10 +80,12 @@ export const works: Work[] = [
     tagline_ja: "生成AIキャンプのメンターとして、LLM・RAG・Difyによるワークフロー自動化を学習支援。担当生徒の完遂率100%を達成。",
     metrics: [
       "Student learning continuation & graduation rate: 100% (18 graduates)",
+      "Generative-AI webinar instructor for an audience of 100+",
       "Proposed 4 improvements to curriculum & progress tracking sheets",
     ],
     metrics_ja: [
       "担当生徒の学習継続率＆完遂率 100%（卒業生18名）",
+      "生成AIウェビナー講師（受講者100名以上）",
       "カリキュラム＆学習進捗管理シートの改善案提案（4件）",
     ],
     skills: ["Dify", "LLM", "RAG", "LangChain", "Mentoring", "Curriculum Design"],

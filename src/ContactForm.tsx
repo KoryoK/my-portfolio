@@ -12,6 +12,14 @@ interface ContactFormProps {
 
 const copy = {
   ja: {
+    inquiryType: 'ご相談内容の種別',
+    inquiryOptions: [
+      { value: '',           label: '選択してください' },
+      { value: 'mentor',     label: '生成AIメンター' },
+      { value: 'data',       label: 'データ分析アドバイザリー' },
+      { value: 'automation', label: 'ノーコード/ローコード自動化' },
+      { value: 'other',      label: 'その他・採用など' },
+    ],
     name:        'お名前',
     email:       'メールアドレス',
     message:     'お問い合わせ内容',
@@ -25,6 +33,14 @@ const copy = {
     required:    '必須',
   },
   en: {
+    inquiryType: 'Type of inquiry',
+    inquiryOptions: [
+      { value: '',           label: 'Please select' },
+      { value: 'mentor',     label: 'Generative AI Mentor' },
+      { value: 'data',       label: 'Data Analytics Advisory' },
+      { value: 'automation', label: 'No-Code / Low-Code Automation' },
+      { value: 'other',      label: 'Other / hiring' },
+    ],
     name:        'Name',
     email:       'Email',
     message:     'Message',
@@ -42,9 +58,9 @@ const copy = {
 export default function ContactForm({ lang }: ContactFormProps) {
   const c = copy[lang];
   const [status, setStatus] = useState<Status>('idle');
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ inquiryType: '', name: '', email: '', message: '' });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -59,7 +75,7 @@ export default function ContactForm({ lang }: ContactFormProps) {
       });
       if (res.ok) {
         setStatus('success');
-        setForm({ name: '', email: '', message: '' });
+        setForm({ inquiryType: '', name: '', email: '', message: '' });
       } else {
         setStatus('error');
       }
@@ -81,6 +97,31 @@ export default function ContactForm({ lang }: ContactFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="flex-1 flex flex-col gap-5 w-full max-w-sm mx-auto md:mx-0 md:max-w-none">
+      {/* Inquiry type */}
+      <div>
+        <label className="block text-xs font-mono uppercase tracking-widest opacity-70 mb-2">
+          {c.inquiryType} <span className="opacity-50">*</span>
+        </label>
+        <select
+          name="inquiryType"
+          required
+          value={form.inquiryType}
+          onChange={handleChange}
+          className={`${inputClass} appearance-none cursor-pointer`}
+        >
+          {c.inquiryOptions.map((opt) => (
+            <option
+              key={opt.value}
+              value={opt.value}
+              disabled={opt.value === ''}
+              className="text-text-dark bg-white"
+            >
+              {opt.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
       {/* Name */}
       <div>
         <label className="block text-xs font-mono uppercase tracking-widest opacity-70 mb-2">

@@ -8,6 +8,7 @@ import { motion } from 'motion/react';
 import { Menu, X as CloseIcon, ArrowUpRight, Github, Linkedin, Twitter } from 'lucide-react';
 import { works } from './data/works';
 import type { Work } from './data/works';
+import { services } from './data/services';
 import { projects } from './data/projects';
 import type { Project } from './data/projects';
 import { posts } from './data/blog';
@@ -25,6 +26,7 @@ const translations = {
       menu: 'メニュー',
       home: 'ホーム',
       works: '実績',
+      services: 'サービス',
       showcase: '開発実績',
       blog: 'ブログ',
       about: 'プロフィール',
@@ -53,6 +55,12 @@ const translations = {
     capabilities: {
       title: 'ケイパビリティ',
     },
+    services: {
+      title: 'サービス',
+      subtitle: 'フリーランスとして提供している支援メニュー。',
+      included: '提供内容',
+      cta: '相談する →',
+    },
     showcase: {
       title: '開発実績',
       subtitle: '自作アプリ・GAS・AIツールのポートフォリオ。',
@@ -71,7 +79,7 @@ const translations = {
       reply: '24時間以内にご返信します。',
       cta: 'お問い合わせはこちら →',
     },
-    footer: { career: '実績', showcase: '開発実績', blog: 'ブログ', profile: 'プロフィール' },
+    footer: { career: '実績', services: 'サービス', showcase: '開発実績', blog: 'ブログ', profile: 'プロフィール' },
   },
   en: {
     nav: {
@@ -79,6 +87,7 @@ const translations = {
       menu: 'Menu',
       home: 'Home',
       works: 'Works',
+      services: 'Services',
       showcase: 'Showcase',
       blog: 'Journal',
       about: 'About',
@@ -107,6 +116,12 @@ const translations = {
     capabilities: {
       title: 'Capabilities',
     },
+    services: {
+      title: 'Services',
+      subtitle: 'How I help clients as a freelance AI engineer.',
+      included: "What's included",
+      cta: 'Get in touch →',
+    },
     showcase: {
       title: 'Dev Showcase',
       subtitle: 'Apps, GAS projects, and AI tools I have built.',
@@ -125,7 +140,7 @@ const translations = {
       reply: 'I reply within 24 hours.',
       cta: 'Start a conversation →',
     },
-    footer: { career: 'Career', showcase: 'Showcase', blog: 'Journal', profile: 'Profile' },
+    footer: { career: 'Career', services: 'Services', showcase: 'Showcase', blog: 'Journal', profile: 'Profile' },
   },
 } as const;
 
@@ -228,6 +243,7 @@ export default function App() {
   const menuLinks = [
     ['home', '#home'],
     ['works', '#works'],
+    ['services', '#services'],
     ['showcase', '#showcase'],
     ['blog', '#blog'],
     ['about', '#about'],
@@ -601,6 +617,83 @@ export default function App() {
         </div>
       </section>
 
+      {/* Services Section */}
+      <section id="services" className="py-32 px-6 md:px-12 bg-bg-dark-alt overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-20"
+          >
+            <h2 className="text-[clamp(2.5rem,6vw,6rem)] font-bold tracking-tighter uppercase leading-none mb-4">
+              {t.services.title}
+            </h2>
+            <p className="text-text-muted text-sm uppercase tracking-widest">{t.services.subtitle}</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, i) => (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`flex flex-col p-10 border transition-all duration-500 group ${
+                  service.featured
+                    ? 'border-accent bg-accent/[0.04]'
+                    : 'border-text-light/10 hover:border-accent'
+                }`}
+              >
+                {service.featured && (
+                  <span className="text-[10px] font-mono bg-accent/15 text-accent px-2 py-0.5 rounded-full uppercase tracking-widest self-start mb-4">
+                    {isJa ? '主要サービス' : 'Flagship'}
+                  </span>
+                )}
+                <h3 className="text-2xl md:text-3xl font-bold group-hover:text-accent transition-colors">
+                  {isJa ? service.title_ja : service.title}
+                </h3>
+                <p className="text-accent text-sm font-bold italic mt-3">
+                  {isJa ? service.tagline_ja : service.tagline}
+                </p>
+                <p className="text-sm text-text-muted mt-4 mb-6 leading-relaxed">
+                  {isJa ? service.description_ja : service.description}
+                </p>
+
+                <h4 className="text-xs font-mono uppercase tracking-widest text-accent mb-3">
+                  {t.services.included}
+                </h4>
+                <ul className="space-y-2 mb-8">
+                  {(isJa ? service.deliverables_ja : service.deliverables).map((d) => (
+                    <li key={d} className="text-sm text-text-light/80 flex gap-2">
+                      <span className="text-accent flex-shrink-0">—</span>
+                      <span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {service.tags.map((tag) => (
+                    <span key={tag} className="text-xs border border-text-light/20 px-2.5 py-1 rounded-full text-text-muted">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href="#contact"
+                  className="mt-auto inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase text-accent hover:gap-3 transition-all duration-300"
+                >
+                  {t.services.cta}
+                  <ArrowUpRight size={16} />
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Showcase Section */}
       <section id="showcase" className="py-32 px-6 md:px-12 bg-bg-dark-alt">
         <div className="max-w-7xl mx-auto">
@@ -811,6 +904,7 @@ export default function App() {
           </div>
           <div className="flex gap-8 text-xs uppercase tracking-widest text-text-muted">
             <a href="#works" className="hover:text-text-light transition-colors">{t.footer.career}</a>
+            <a href="#services" className="hover:text-text-light transition-colors">{t.footer.services}</a>
             <a href="#showcase" className="hover:text-text-light transition-colors">{t.footer.showcase}</a>
             <a href="#blog" className="hover:text-text-light transition-colors">{t.footer.blog}</a>
             <a href="#about" className="hover:text-text-light transition-colors">{t.footer.profile}</a>
