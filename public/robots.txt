@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://koryo-kakinoki.com/sitemap.xml
