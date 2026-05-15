@@ -17,6 +17,7 @@ import WorkDetail from './WorkDetail';
 import ProjectDetail from './ProjectDetail';
 import BlogDetail from './BlogDetail';
 import ContactForm from './ContactForm';
+import { trackEvent } from './analytics';
 
 // ── Translations ──────────────────────────────────────────────────────────────
 const translations = {
@@ -683,6 +684,7 @@ export default function App() {
 
                 <a
                   href="#contact"
+                  onClick={() => trackEvent('service_cta_click', { service: service.inquiryValue })}
                   className="mt-auto inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase text-accent hover:gap-3 transition-all duration-300"
                 >
                   {t.services.cta}
@@ -884,6 +886,7 @@ export default function App() {
               <a
                 key={label}
                 href={href}
+                onClick={() => trackEvent('social_link_click', { destination: label })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`flex items-center gap-2 border px-5 py-3 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ${color}`}
