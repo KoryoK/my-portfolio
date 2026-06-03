@@ -36,7 +36,7 @@ const translations = {
       contact: 'コンタクト',
     },
     hero: {
-      label: 'データ × AI × リーダーシップ',
+      label: '柿木滉亮｜AIエンジニア・データ分析・PM',
       bio: 'データを分析し、AIを実装し、グローバルチームを率いる。複雑な課題をシンプルな意思決定へ。',
       quote: '「データは道を照らす。最後に決めるのは、人間の情理。」',
       experience: '経験領域',
@@ -107,7 +107,7 @@ const translations = {
       contact: 'Contact',
     },
     hero: {
-      label: 'Strategist. Engineer. Leader.',
+      label: 'Koryo Kakinoki — AI Engineer · Data · PM',
       bio: 'I analyse data, engineer AI solutions, and lead global teams — turning complexity into decisions that move organisations forward.',
       quote: '"Data lights the way. The final decision always belongs to people."',
       experience: 'Experience',
@@ -394,7 +394,7 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              <span className="text-accent font-semibold tracking-[0.3em] uppercase mb-6 block">{t.hero.label}</span>
+              <span className="text-accent font-semibold text-xs md:text-base tracking-[0.18em] md:tracking-[0.3em] uppercase mb-6 block">{t.hero.label}</span>
               <h1 className={`text-[clamp(3rem,7vw,6.5rem)] font-extrabold mb-10 ${isJa ? 'leading-[1.1]' : 'leading-[0.85]'}`}>
                 {isJa ? (
                   <>
