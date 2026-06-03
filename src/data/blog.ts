@@ -18,6 +18,10 @@ export interface BlogPost {
   appLink?: string;
   appLinkLabel?: string;
   appLinkLabel_ja?: string;
+  /** Internal anchor to a related on-page service (e.g. "#services"), for topic-cluster linking. */
+  relatedAnchor?: string;
+  relatedLabel?: string;
+  relatedLabel_ja?: string;
 }
 
 export const posts: BlogPost[] = [
@@ -54,6 +58,9 @@ export const posts: BlogPost[] = [
     appLink: "https://apps.apple.com/app/aporix/id6760210339",
     appLinkLabel: "Download on the App Store",
     appLinkLabel_ja: "App Storeでダウンロード",
+    relatedAnchor: "#services",
+    relatedLabel: "Related service: Project Management & App Development",
+    relatedLabel_ja: "関連サービス：プロジェクトマネジメント & アプリ開発",
   },
   {
     id: 2,
@@ -91,6 +98,9 @@ export const posts: BlogPost[] = [
     appLink: "https://unbias-cv.vercel.app/",
     appLinkLabel: "Try Unbias JD",
     appLinkLabel_ja: "Unbias JDを試す",
+    relatedAnchor: "#services",
+    relatedLabel: "Related service: GenAI Engineering",
+    relatedLabel_ja: "関連サービス：生成AI開発・実装",
   },
   {
     id: 1,
@@ -125,5 +135,8 @@ export const posts: BlogPost[] = [
     link: "https://note.com/brainy_phlox8948/n/ne29425e9b50f",
     linkLabel: "Read full article on note",
     linkLabel_ja: "noteで全文を読む",
+    relatedAnchor: "#services",
+    relatedLabel: "Related service: No-Code / Low-Code Automation",
+    relatedLabel_ja: "関連サービス：ノーコード/ローコード自動化",
   },
 ];

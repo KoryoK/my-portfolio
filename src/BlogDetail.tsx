@@ -125,6 +125,21 @@ export default function BlogDetail({ post, onClose, lang }: BlogDetailProps) {
                 )}
               </div>
             )}
+
+            {post.relatedAnchor && (
+              <div className="mt-6">
+                <a
+                  href={post.relatedAnchor}
+                  onClick={onClose}
+                  className="inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase text-accent hover:gap-3 transition-all duration-300"
+                >
+                  {isJa
+                    ? post.relatedLabel_ja ?? '関連サービス'
+                    : post.relatedLabel ?? 'Related service'}
+                  <ArrowUpRight size={16} />
+                </a>
+              </div>
+            )}
           </motion.article>
         </motion.div>
       )}

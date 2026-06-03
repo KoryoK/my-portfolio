@@ -10,35 +10,35 @@ export interface Service {
   deliverables_ja: string[];
   tags: string[];
   /** Value passed to the contact form's inquiry-type select. Must match a ContactForm option value. */
-  inquiryValue: 'mentor' | 'data' | 'automation' | 'other';
+  inquiryValue: 'genai' | 'data' | 'automation' | 'project' | 'other';
   featured?: boolean;
 }
 
 export const services: Service[] = [
   {
     id: 1,
-    title: "Generative AI Mentor",
-    title_ja: "生成AIメンター",
-    tagline: "Go from AI-curious to AI-capable — with a working engineer alongside you.",
-    tagline_ja: "「気になる」から「使いこなす」へ。現役エンジニアが伴走します。",
+    title: "GenAI Engineering",
+    title_ja: "生成AI開発・実装",
+    tagline: "From prototype to production — generative AI built into your real workflows.",
+    tagline_ja: "試作から本番へ。生成AIを、実業務の中に組み込む。",
     description:
-      "1-on-1 and team mentoring for engineers and businesses adopting generative AI. We work through LLM, RAG, and Dify-based workflow automation on your real use cases — not toy examples. Built on mentoring 18 bootcamp graduates to a 100% completion rate and instructing generative-AI webinars for audiences of 100+.",
+      "Hands-on engineering and advisory for businesses adopting generative AI. I build LLM, RAG, and Dify-based workflow automation around your real use cases — from first prototype through to production deployment, not slideware.",
     description_ja:
-      "生成AIを導入したいエンジニア・事業者向けの1on1／チームメンタリング。LLM・RAG・Difyによるワークフロー自動化を、サンプルではなく「あなたの実課題」で一緒に手を動かしながら習得します。生成AIキャンプで卒業生18名を完遂率100%で伴走し、受講者100名以上の生成AIウェビナー講師も務めた実績に基づきます。",
+      "生成AIを導入する事業者向けのハンズオン開発・導入支援。LLM・RAG・Difyによるワークフロー自動化を、サンプルではなく「あなたの実業務」に合わせて構築します。要件相談から試作、本番運用までを一気通貫で伴走します。",
     deliverables: [
-      "Weekly 1-on-1 or team sessions (online)",
-      "Hands-on guidance on LLM / RAG / Dify workflows",
-      "Code & prompt review on your real projects",
-      "A roadmap from first prototype to production",
+      "LLM / RAG / Dify solution design & build",
+      "Workflow automation around your real use cases",
+      "Prototype-to-production deployment",
+      "Prompt & pipeline review and tuning",
     ],
     deliverables_ja: [
-      "週次の1on1／チームセッション（オンライン）",
-      "LLM・RAG・Difyワークフローのハンズオン支援",
-      "実プロジェクトのコード・プロンプトレビュー",
-      "試作から本番運用までのロードマップ作成",
+      "LLM・RAG・Difyソリューションの設計・構築",
+      "実業務に合わせたワークフロー自動化",
+      "試作から本番運用までの実装・デプロイ",
+      "プロンプト・パイプラインのレビューとチューニング",
     ],
-    tags: ["LLM", "RAG", "Dify", "Mentoring"],
-    inquiryValue: "mentor",
+    tags: ["LLM", "RAG", "Dify", "Automation"],
+    inquiryValue: "genai",
     featured: true,
   },
   {
@@ -90,5 +90,30 @@ export const services: Service[] = [
     ],
     tags: ["GAS", "Make.com", "Notion", "Process Automation"],
     inquiryValue: "automation",
+  },
+  {
+    id: 4,
+    title: "Project Management & App Development",
+    title_ja: "プロジェクトマネジメント & アプリ開発",
+    tagline: "Own delivery end to end — from requirements to a shipped product.",
+    tagline_ja: "要件定義から納品まで。「作って届ける」を一気通貫で。",
+    description:
+      "End-to-end ownership of your project: requirements, planning, hands-on development, and delivery. Drawing on leading a data-modernisation program across six European countries and shipping my own apps to the App Store and beyond.",
+    description_ja:
+      "要件定義・計画から実装・納品まで、プロジェクトを一気通貫で推進します。欧州6カ国のデータ近代化プログラムをリードした経験と、自作アプリをApp Storeまでリリースした開発実績をもとに支援します。",
+    deliverables: [
+      "Project planning, scoping & stakeholder alignment",
+      "Hands-on application design & development",
+      "Agile delivery and progress management",
+      "Release, handover, and post-launch support",
+    ],
+    deliverables_ja: [
+      "計画立案・スコープ設計・関係者調整",
+      "アプリケーションの設計・開発",
+      "アジャイルでの推進・進捗管理",
+      "リリース・引き継ぎ・公開後サポート",
+    ],
+    tags: ["Project Mgmt", "App Dev", "Agile", "Delivery"],
+    inquiryValue: "project",
   },
 ];

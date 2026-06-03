@@ -9,6 +9,7 @@ import { Menu, X as CloseIcon, ArrowUpRight, Github, Linkedin, Twitter } from 'l
 import { works } from './data/works';
 import type { Work } from './data/works';
 import { services } from './data/services';
+import { trainingPrograms } from './data/training';
 import { projects } from './data/projects';
 import type { Project } from './data/projects';
 import { posts } from './data/blog';
@@ -28,6 +29,7 @@ const translations = {
       home: 'ホーム',
       works: '実績',
       services: 'サービス',
+      training: '研修',
       showcase: '開発実績',
       blog: 'ブログ',
       about: 'プロフィール',
@@ -58,9 +60,18 @@ const translations = {
     },
     services: {
       title: 'サービス',
-      subtitle: 'フリーランスとして提供している支援メニュー。',
+      subtitle: '作る・支援する — 開発・分析・自動化・PMで、課題を一緒に形にする。',
       included: '提供内容',
       cta: '相談する →',
+    },
+    training: {
+      title: '生成AI 研修・教育',
+      subtitle: '学ぶ・育てる — 生成AIウェビナーから企業研修、個人メンタリングまで。',
+      credibility: '受講者100名以上に登壇し、ブートキャンプ卒業生18名を完遂率100%で伴走。',
+      audience: '対象',
+      format: '形式',
+      duration: '時間・規模',
+      outcomes: '内容',
     },
     showcase: {
       title: '開発実績',
@@ -89,6 +100,7 @@ const translations = {
       home: 'Home',
       works: 'Works',
       services: 'Services',
+      training: 'Training',
       showcase: 'Showcase',
       blog: 'Journal',
       about: 'About',
@@ -119,9 +131,18 @@ const translations = {
     },
     services: {
       title: 'Services',
-      subtitle: 'How I help clients as a freelance AI engineer.',
+      subtitle: 'Build & advisory — engineering, analytics, automation, and delivery.',
       included: "What's included",
       cta: 'Get in touch →',
+    },
+    training: {
+      title: 'Generative AI Training',
+      subtitle: 'Learn & grow — from generative AI webinars to corporate training and 1-on-1 mentoring.',
+      credibility: 'Taught audiences of 100+ and guided 18 bootcamp graduates to a 100% completion rate.',
+      audience: 'For',
+      format: 'Format',
+      duration: 'Scale',
+      outcomes: 'Curriculum',
     },
     showcase: {
       title: 'Dev Showcase',
@@ -200,6 +221,9 @@ export default function App() {
   const t = translations[lang];
   const isJa = lang === 'ja';
 
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -245,6 +269,7 @@ export default function App() {
     ['home', '#home'],
     ['works', '#works'],
     ['services', '#services'],
+    ['training', '#training'],
     ['showcase', '#showcase'],
     ['blog', '#blog'],
     ['about', '#about'],
@@ -633,7 +658,7 @@ export default function App() {
             <p className="text-text-muted text-sm uppercase tracking-widest">{t.services.subtitle}</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, i) => (
               <motion.div
                 key={service.id}
@@ -688,6 +713,91 @@ export default function App() {
                   className="mt-auto inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase text-accent hover:gap-3 transition-all duration-300"
                 >
                   {t.services.cta}
+                  <ArrowUpRight size={16} />
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Training Section */}
+      <section id="training" className="py-32 px-6 md:px-12 bg-bg-dark overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-20"
+          >
+            <h2 className="text-[clamp(2.5rem,6vw,6rem)] font-bold tracking-tighter uppercase leading-none mb-4">
+              {t.training.title}
+            </h2>
+            <p className="text-text-muted text-sm uppercase tracking-widest mb-6">{t.training.subtitle}</p>
+            <p className="text-sm text-text-light/70 border-l-2 border-accent pl-4 max-w-2xl leading-relaxed">
+              {t.training.credibility}
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {trainingPrograms.map((program, i) => (
+              <motion.div
+                key={program.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col p-10 border border-text-light/10 hover:border-accent transition-all duration-500 group"
+              >
+                <h3 className="text-2xl md:text-3xl font-bold group-hover:text-accent transition-colors">
+                  {isJa ? program.title_ja : program.title}
+                </h3>
+                <p className="text-accent text-sm font-bold italic mt-3">
+                  {isJa ? program.tagline_ja : program.tagline}
+                </p>
+                <p className="text-sm text-text-muted mt-4 mb-6 leading-relaxed">
+                  {isJa ? program.description_ja : program.description}
+                </p>
+
+                <dl className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-y border-text-light/10 py-5 mb-6">
+                  {([
+                    [t.training.audience, isJa ? program.audience_ja : program.audience],
+                    [t.training.format, isJa ? program.format_ja : program.format],
+                    [t.training.duration, isJa ? program.duration_ja : program.duration],
+                  ] as [string, string][]).map(([label, value]) => (
+                    <div key={label}>
+                      <dt className="text-[10px] font-mono uppercase tracking-widest text-accent mb-1">{label}</dt>
+                      <dd className="text-xs text-text-light/80 leading-relaxed">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <h4 className="text-xs font-mono uppercase tracking-widest text-accent mb-3">
+                  {t.training.outcomes}
+                </h4>
+                <ul className="space-y-2 mb-8">
+                  {(isJa ? program.outcomes_ja : program.outcomes).map((d) => (
+                    <li key={d} className="text-sm text-text-light/80 flex gap-2">
+                      <span className="text-accent flex-shrink-0">—</span>
+                      <span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {program.tags.map((tag) => (
+                    <span key={tag} className="text-xs border border-text-light/20 px-2.5 py-1 rounded-full text-text-muted">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href="#contact"
+                  onClick={() => trackEvent('service_cta_click', { service: program.inquiryValue })}
+                  className="mt-auto inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase text-accent hover:gap-3 transition-all duration-300"
+                >
+                  {isJa ? program.cta_ja : program.cta}
                   <ArrowUpRight size={16} />
                 </a>
               </motion.div>
