@@ -26,6 +26,40 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    id: 4,
+    slug: "ai-requirements-training",
+    title: "Teaching AI, Built With AI",
+    title_ja: "AIを教える研修を、AIで作った",
+    date: "2026-09-01",
+    category: "Training Design / AI",
+    category_ja: "研修設計 / AI",
+    readingTime: 6,
+    excerpt:
+      "A 3-day generative-AI training programme for around 70 engineers — designed end to end, from a quantitative pre-survey analysis that decided the group structure, through exercises built to withhold the answer, to a PPTX-XML pipeline that produced the materials. The tool used to build it was the subject being taught.",
+    excerpt_ja:
+      "エンジニア約70名・3日間の生成AI研修を、設計から教材制作まで一気通貫で担当した。グループ編成を決めた事前アンケートの定量分析、答えを教えない演習設計、PPTXをXMLレベルで組み立てる制作パイプライン。作るのに使った道具が、そのまま教える対象だった。",
+    body: [
+      "\"Teaching AI, built with AI\" is not a slogan here — it is a literal description of the working method. I designed a 3-day, on-site generative-AI training programme for a cohort of around 70 engineers: the quantitative analysis of the pre-survey, the curriculum, and the exercise materials themselves. The toolchain was Python, python-pptx, and Claude Code. The thing being taught and the thing doing the building were the same.",
+      "The design had to satisfy three constraints at once. First, assume near-zero prior experience with requirements definition, and still get people to feel what upstream thinking is like inside three days. Second, break overconfidence in AI. The failure that recurs in generative-AI training is trusting the output uncritically, and a lecture does not fix it — it has to be built into an experience. Third, leave nobody behind: across a group of ~70 with real skill spread, everyone needs to walk out with something that worked.",
+      "The first pillar was the pre-survey analysis. Five indicators were inverted into ability points, combined into a weighted composite score, and cut into three tiers that drove the group structure. What mattered was not the classification but the robustness audit around it. If you hand a client a segmentation, you have to answer \"why this line?\" on the spot or it cannot be used for a decision. So: a sensitivity check showing 94% of people stayed in the same tier under even weighting; an explicit boundary band of ±0.5 points labelled as genuinely ambiguous rather than silently assigned; and response-quality flags for suspiciously fast or flat-lined submissions. The analysis shipped with a document that separated what the data supports from what it does not. Every step was scripted, so the same input always produces the same output.",
+      "The second pillar was exercise design, and the principle was to withhold the answer. In the AI-output evaluation exercise, participants judge the output before being taught any evaluation framework — the reveal comes afterwards. Errors are seeded at three difficulty levels, so every participant, at whatever level, gets to find at least one and know they found it. The interview role-play runs as a card-based format: groups of four, four rounds, 75 minutes. The cards are built to return nothing useful in response to an open question. You can only make progress with closed questions driven by a hypothesis — which turns \"come in with a hypothesis\" from advice into a structural constraint.",
+      "The third pillar was the materials pipeline. A lot of slides had to conform to a brand template, and rebuilding a template from scratch always drifts — a logo, a margin, a fill. So instead of recreating anything, the PPTX gets unpacked, edited as XML with lxml, and packed back up; the template's own decoration is inherited untouched. Verification runs through LibreOffice to PDF, then pdftoppm to images, and the layout breaks and overlapping text get caught by eye. The Japanese-font problem, where CJK glyphs silently fall back to Chinese forms, was pinned down at the rPr level. Fourteen exercise materials came out of this path, sized for 17–18 groups running in parallel.",
+      "Three things stayed with me. One: an analysis handed to a client being correct is not enough. It becomes usable for a decision only once you can answer \"how do you know?\" without pausing. Two: using AI to design the training about using AI gives the instructor a felt sense — not a described one — of where the boundary between machine work and human work actually sits, and that showed up directly in how convincingly it could be taught. Three: do not try to reproduce a template; inherit the XML. It is faster and it is certain. Delivery is September 2026. How well the design held up gets measured by the shift between the pre- and post-survey, and that is a separate piece of writing.",
+    ],
+    body_ja: [
+      "「AIを教える研修を、AIで作った」。これは言葉遊びではなく、実際の作業手順そのものだ。エンジニア約70名・3日間・オンサイトの生成AI研修を、事前アンケートの定量分析からカリキュラム設計、演習教材の制作まで一気通貫で担当した。使ったのはPython、python-pptx、そしてClaude Code。教える対象と、それを作る道具が同じという構図になった。",
+      "設計の出発点は、同時に満たさなければならない3つの制約だった。ひとつ、要件定義の実務経験がほとんどない前提で組むこと。それでも3日間で「上流工程の思考」を体験させる必要がある。ふたつ、AIへの過信を壊すこと。生成AI研修で繰り返し起きる失敗は出力を無批判に信じてしまうことで、これは講義では直らない。体験として仕込むしかない。みっつ、できない層を置き去りにしないこと。スキル差のある約70名全員に、何かしら「できた」を残す。",
+      "ひとつめの柱は、事前アンケートの定量分析だった。5指標の回答を能力点へ反転させ、重み付き合成スコアにまとめ、3つのティアに切ってグループ編成に使う。ただし効いたのは分類そのものより、その周りに置いた頑健性の監査のほうだ。クライアントに区分を出す以上、「なぜこの線引きなのか」に即答できなければ意思決定には使えない。だから、重みを均等に変えても94%が同じティアに残ることを確認し、境界±0.5点のバンドは黙って振り分けず「どちらとも言える」と明示ラベルを付け、速答や全項目同一回答といった回答品質のフラグも立てた。そのうえで「データが支持すること」と「支持しないこと」を分離した文書を添えている。全処理はスクリプト化してあり、同じ入力からは必ず同じ出力が出る。",
+      "ふたつめの柱は演習設計で、方針は「答えを先に渡さない」ことだった。AI出力の評価演習では、評価の型を教える前にまず判定させる。種明かしは後だ。誤りは難易度を3段階に分けて仕込んであるので、どのレベルの受講者にも「自分は見つけられた」が最低ひとつ残る。ヒアリングのロールプレイは問題カード式にして、4人1組・75分・4ラウンドで回す。カードは、開いた質問に対しては有用な情報を返さないよう設計してある。仮説を持った閉じた質問でしか前に進めない構造にすることで、「仮説を持って聞く」を助言ではなく構造上の制約に変えた。",
+      "みっつめの柱は教材制作のパイプラインだ。ブランドテンプレート準拠のスライドを大量に作る必要があったが、テンプレートをゼロから再現すると必ずどこかがズレる。ロゴ、余白、塗り。そこで再現をやめ、PPTXをunpackし、lxmlでXMLを直接編集して、またpackし直す方式にした。テンプレート自身の装飾はそのまま継承される。検証はLibreOfficeでPDFに変換し、pdftoppmで画像化して、レイアウト崩れとテキスト重複を目で見て潰す。日本語フォントが中国語グリフに静かにフォールバックする問題は、rPrレベルで明示制御して抑えた。この経路で演習教材14点、同時進行17〜18グループぶんを作っている。",
+      "残った学びは3つある。ひとつ、クライアントに出す分析は「正しい」だけでは足りない。「なぜそう言えるのか」に淀みなく答えられて、はじめて意思決定に使える。ふたつ、AI活用研修の設計そのものにAIを使うと、教える側が「AIに任せてよい所」と「人がやる所」の境界を、説明としてではなく実感として持てる。これは教室での説得力に直結した。みっつ、テンプレートは再現しようとせず、XMLごと継承したほうが速くて確実だ。研修の実施は2026年9月。設計がどこまで効いたかは事前・事後アンケートの伸びで測る。それはまた別に書く。",
+    ],
+    tags: ["Instructional Design", "Data Analysis", "python-pptx", "Claude Code", "Corporate Training"],
+    relatedAnchor: "#training",
+    relatedLabel: "Related service: Corporate GenAI Training",
+    relatedLabel_ja: "関連サービス：企業向け生成AI研修",
+  },
+  {
     id: 3,
     slug: "aporix-live-on-app-store",
     title: "Aporix Ships — A Marketplace for Ideas, Validated Before Code",
