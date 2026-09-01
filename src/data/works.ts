@@ -18,6 +18,34 @@ export interface Work {
 
 export const works: Work[] = [
   {
+    id: 8,
+    title: "GenAI Training Designer & Mentor",
+    title_ja: "生成AI研修 設計・メンタリング",
+    category: "Corporate GenAI Training / Instructional Design",
+    category_ja: "企業向け生成AI研修 / インストラクショナルデザイン",
+    period: "Jun 2026 – Present",
+    period_ja: "2026年6月〜現在",
+    org: "Corporate Training Provider",
+    tagline: "Designing a 3-day generative-AI training programme for a cohort of ~70 engineers — from quantitative pre-survey analysis through curriculum to the materials build pipeline.",
+    tagline_ja: "エンジニア約70名・3日間の生成AI研修を設計。事前アンケートの定量分析からカリキュラム設計、教材制作パイプラインまで一貫して担当。",
+    metrics: [
+      "Designed a 3-day on-site \"Requirements Definition with GenAI\" programme for ~70 engineers (delivery: Sep 2026)",
+      "Turned a 5-indicator pre-survey (100% response rate) into a weighted composite score driving tier-based group design",
+      "Audited the segmentation for robustness — 94% tier agreement under even weighting, with boundary bands labelled explicitly",
+      "Authored 14 exercise materials, designed for 17–18 groups running in parallel",
+      "Built a PPTX-XML editing pipeline (unpack → lxml → repack) with LibreOffice / pdftoppm visual QA to preserve the brand template",
+    ],
+    metrics_ja: [
+      "エンジニア約70名向け「生成AIによる要件定義研修」（3日間・オンサイト）を設計（2026年9月実施）",
+      "事前アンケート5指標（回答率100%）を重み付き合成スコア化し、ティア別のグループ編成を設計",
+      "分類の頑健性を監査：均等重みでもティア一致94%、境界バンドを明示ラベル化",
+      "演習教材14点を制作、同時進行17〜18グループを前提に設計",
+      "ブランドテンプレートを保持するPPTX-XML編集パイプライン（unpack→lxml→repack）を構築、LibreOffice／pdftoppmで視覚QA",
+    ],
+    skills: ["Corporate Training", "Instructional Design", "Data Analysis", "python-pptx", "Claude Code", "GitHub Copilot"],
+    current: true,
+  },
+  {
     id: 1,
     title: "Project Manager",
     title_ja: "プロジェクトマネージャー",
