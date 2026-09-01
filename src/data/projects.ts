@@ -11,10 +11,28 @@ export interface Project {
   appLink?: string;
   appLinkLabel?: string;
   appLinkLabel_ja?: string;
-  type: 'webapp' | 'gas' | 'ai' | 'dashboard' | 'mobile';
+  type: 'webapp' | 'gas' | 'ai' | 'dashboard' | 'mobile' | 'automation';
 }
 
 export const projects: Project[] = [
+  {
+    id: 8,
+    title: "tourney-app",
+    description: "Multi-tenant SaaS for running volleyball tournaments. Organisers self-serve a tournament via Stripe checkout, then run it live — score entry, standings, brackets, schedules and a public spectator view, all on path-based tenancy.",
+    description_ja: "バレーボール大会運営のマルチテナントSaaS。主催者はStripe決済で大会を自分で立ち上げ、そのまま当日運営まで完結。スコア入力・順位表・対戦表・スケジュールと観戦者向け公開ページを、パスベースのテナント分離で提供。",
+    images: [
+      "/screenshots/tourney-1.png",
+      "/screenshots/tourney-2.png",
+      "/screenshots/tourney-3.png",
+      "/screenshots/tourney-4.png",
+      "/screenshots/tourney-5.png",
+    ],
+    tags: ["Next.js 16", "React 19", "Supabase", "Stripe", "TypeScript", "Tailwind 4", "shadcn/ui", "Playwright"],
+    appLink: "https://tourney-app-seven.vercel.app",
+    appLinkLabel: "Open the live app",
+    appLinkLabel_ja: "公開中のアプリを見る",
+    type: "webapp",
+  },
   {
     id: 7,
     title: "Voice → Notion → AI Classifier",
@@ -110,5 +128,14 @@ export const projects: Project[] = [
     images: ["/screenshots/kpi-1.png"],
     tags: ["Google Apps Script", "Google Sheets", "HTML5", "CSS3", "JavaScript ES6+"],
     type: "dashboard",
+  },
+  {
+    id: 9,
+    title: "Scheduled Web Automation Pipeline",
+    description: "Python pipeline that drives a legacy web portal with no public API. A Playwright headless browser handles session login, DOM scraping and form submission; runs are triggered either by a Japanese-holiday-aware scheduler or on demand via an HMAC-verified LINE webhook. Every run reports to LINE and email, and captures a screenshot on failure.",
+    description_ja: "公開APIを持たないレガシーWebポータルを自動操作するPythonパイプライン。Playwrightのヘッドレスブラウザでログイン・DOMスクレイピング・フォーム送信を行い、日本の祝日を考慮したスケジューラ、またはHMAC検証付きLINE Webhook経由のチャットコマンドで起動。実行結果はLINEとメールに通知し、失敗時はスクリーンショットを証跡として保存。",
+    images: ["/screenshots/web-automation-1.png"],
+    tags: ["Python", "Playwright", "Web Scraping", "LINE Messaging API", "Flask", "Scheduling"],
+    type: "automation",
   },
 ];

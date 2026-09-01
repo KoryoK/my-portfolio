@@ -15,6 +15,7 @@ const typeLabel: Record<Project['type'], { en: string; ja: string }> = {
   ai:        { en: 'AI',        ja: 'AI' },
   dashboard: { en: 'Dashboard', ja: 'ダッシュボード' },
   mobile:    { en: 'Mobile',    ja: 'モバイル' },
+  automation:{ en: 'Automation', ja: '自動化' },
 };
 
 export default function ProjectDetail({ project, onClose, lang }: ProjectDetailProps) {
