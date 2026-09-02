@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { posts } from '@/data/blog';
 import { projects } from '@/data/projects';
+import { caseStudies } from '@/data/casestudies';
 import { urlFor } from '@/lib/site';
 
 /**
@@ -30,6 +31,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('blog', { priority: 0.9, changeFrequency: 'weekly', lastModified: latestPost }),
     ...posts.map((p) =>
       entry(`blog/${p.slug}`, { priority: 0.8, changeFrequency: 'yearly', lastModified: p.date }),
+    ),
+    ...caseStudies.map((s) =>
+      entry(`case-studies/${s.slug}`, { priority: 0.9, changeFrequency: 'monthly' }),
     ),
     entry('projects', { priority: 0.9, changeFrequency: 'monthly' }),
     ...projects.map((p) => entry(`projects/${p.slug}`, { priority: 0.7, changeFrequency: 'yearly' })),

@@ -44,6 +44,7 @@ export const works: Work[] = [
     ],
     skills: ["Corporate Training", "Instructional Design", "Data Analysis", "python-pptx", "Claude Code", "GitHub Copilot"],
     current: true,
+    link: "/case-studies/ai-requirements-training",
   },
   {
     id: 1,

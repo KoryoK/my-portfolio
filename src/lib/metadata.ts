@@ -54,6 +54,7 @@ export function baseMetadata(lang: Lang): Metadata {
 
 import { posts } from '@/data/blog';
 import { projects } from '@/data/projects';
+import { caseStudies } from '@/data/casestudies';
 
 export function articleMetadata(slug: string, lang: Lang): Metadata {
   const post = posts.find((p) => p.slug === slug);
@@ -97,5 +98,29 @@ export function projectMetadata(slug: string, lang: Lang): Metadata {
       images: project.images.length ? [project.images[0]] : undefined,
     },
     twitter: { card: 'summary_large_image', title: project.title, description },
+  };
+}
+
+export function caseStudyMetadata(slug: string, lang: Lang): Metadata {
+  const study = caseStudies.find((s) => s.slug === slug);
+  if (!study) return {};
+  const isJa = lang === 'ja';
+  // The anonymisation rule applies to metadata too — no client name in title, description or OG.
+  const title = isJa ? study.title_ja : study.title;
+  const description = isJa
+    ? `${study.subtitle_ja} ${study.scale_ja}の生成AI研修を、事前アンケートの定量分析からカリキュラム設計、教材制作パイプラインまで一貫して設計したケーススタディ。`
+    : `${study.subtitle} A case study on designing a ${study.scale} generative-AI programme end to end — pre-survey analysis, curriculum, and the materials build pipeline.`;
+  return {
+    title,
+    description,
+    keywords: isJa ? study.tags_ja : study.tags,
+    alternates: alternatesFor(`case-studies/${study.slug}`, lang),
+    openGraph: {
+      type: 'article',
+      title,
+      description,
+      url: `${SITE_URL}${lang === 'en' ? '/en' : ''}/case-studies/${study.slug}`,
+    },
+    twitter: { card: 'summary_large_image', title, description },
   };
 }

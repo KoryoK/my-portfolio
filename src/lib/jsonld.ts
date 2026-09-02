@@ -4,6 +4,7 @@ import { services } from '@/data/services';
 import { trainingPrograms } from '@/data/training';
 import type { BlogPost } from '@/data/blog';
 import type { Project } from '@/data/projects';
+import type { CaseStudy } from '@/data/casestudies';
 
 const PERSON_ID = `${SITE_URL}/#person`;
 
@@ -116,5 +117,24 @@ export function breadcrumb(lang: Lang, trail: { name: string; path: string }[]) 
       name: t.name,
       item: urlFor(lang, t.path),
     })),
+  };
+}
+
+export function caseStudyGraph(study: CaseStudy, lang: Lang) {
+  const isJa = lang === 'ja';
+  const url = urlFor(lang, `case-studies/${study.slug}`);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${url}#casestudy`,
+    headline: isJa ? study.title_ja : study.title,
+    alternativeHeadline: isJa ? study.subtitle_ja : study.subtitle,
+    description: isJa ? study.client_ja : study.client,
+    inLanguage: lang,
+    keywords: (isJa ? study.tags_ja : study.tags).join(', '),
+    author: { '@id': PERSON_ID },
+    publisher: { '@id': PERSON_ID },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    about: (isJa ? study.tags_ja : study.tags).map((t) => ({ '@type': 'Thing', name: t })),
   };
 }

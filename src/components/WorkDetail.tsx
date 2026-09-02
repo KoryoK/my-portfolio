@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ArrowUpRight } from 'lucide-react';
 import type { Work } from '@/data/works';
+import { pathFor } from '@/lib/site';
 
 interface WorkDetailProps {
   work: Work | null;
@@ -19,6 +20,8 @@ export default function WorkDetail({ work, onClose, lang }: WorkDetailProps) {
   }, [onClose]);
 
   const isJa = lang === 'ja';
+  // A leading slash means an on-site page, which must resolve to the reader's language edition.
+  const isInternal = !!work?.link?.startsWith('/');
 
   return (
     <AnimatePresence>
@@ -87,9 +90,8 @@ export default function WorkDetail({ work, onClose, lang }: WorkDetailProps) {
 
             {work.link && (
               <a
-                href={work.link}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={isInternal ? pathFor(lang, work.link) : work.link}
+                {...(isInternal ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
                 className="inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase hover:text-accent transition-colors"
               >
                 {isJa ? 'ケーススタディを見る' : 'View full case study'}
