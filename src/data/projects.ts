@@ -72,6 +72,18 @@ export const projects: Project[] = [
     appLink: "https://eu1.make.com/public/shared-scenario/4oPg7ud7jQI/notion-page-categorise",
     appLinkLabel: "Copy Make.com scenario",
     appLinkLabel_ja: "Make.comシナリオをコピー",
+    body: [
+      "A voice recorder that writes straight into Notion sounds ideal until you use it for two weeks and the workspace is a landfill of untitled recordings — diary entries, product ideas and to-dos all in one undifferentiated pile.",
+      "The fix was to stop treating the recorder as a destination and treat it as an input stream. Soundcore Work feeds Make.com, Claude classifies each transcript into diary / idea / to-do, and each class lands in its own Notion database. A monthly rollup then summarises what actually came up.",
+      "The design point that mattered was idempotency. The first version had no dedupe, so every scenario run reprocessed the same pages and entries multiplied. The rewrite added a Processed Log database: check before doing anything, let only unseen items through, and write the log at the end of each branch. Without that step an automation is not a time-saver — it is a source of incidents.",
+      "It runs on free tiers plus one AI call per recording, which is a few hundred yen a month. No server, no scheduler, nothing to keep alive. The monthly summary turned out to be the most valuable output: what you actually thought about this month, from data rather than from a flattering memory.",
+    ],
+    body_ja: [
+      "音声をそのまま Notion に書き込むボイスレコーダーは理想的に聞こえるが、2週間使うとワークスペースは無題の録音で埋まる。日記もアイデアも To-do も、区別のつかない一山になる。",
+      "解決は、レコーダーを「保存先」ではなく「入力ストリーム」として扱うこと。Soundcore Work が Make.com に流し、Claude が各文字起こしを「日記／アイデア／To-do」に分類し、それぞれ専用の Notion データベースへ着地させる。さらに月次でロールアップし、その月に実際に何が出てきたかを要約する。",
+      "設計上いちばん効いたのは冪等性だった。初版は重複排除が無く、シナリオが走るたびに同じページを再処理してエントリが増殖した。改訂版で Processed Log データベースを追加し、「何かする前に確認 → 未処理のものだけ通す → 各分岐の末尾でログを書く」という順序に組み直した。この一手が無い自動化は、時間を生むものではなく事故を生むものになる。",
+      "無料枠と、録音1件につきAI呼び出し1回——月に数百円で回る。サーバーもスケジューラも、生かし続けるものが何も無い。いちばん価値が出たのは月次サマリーだった。今月自分が本当に何を考えていたかが、都合よく編集された記憶ではなくデータとして出てくる。",
+    ],
     type: "ai",
   },
   {
@@ -116,6 +128,18 @@ export const projects: Project[] = [
     appLink: "https://apps.apple.com/app/aporix/id6760210339",
     appLinkLabel: "Download on the App Store",
     appLinkLabel_ja: "App Storeでダウンロード",
+    body: [
+      "Aporix is an idea-sharing platform: people post ideas, others tap to signal they want them built, and developers browse ranked by that signal. It shipped to the App Store in April 2026.",
+      "The structural decision was a Turborepo monorepo rather than separate repositories. The Expo mobile app and the Next.js web app share three packages — db (Supabase client, generated types, table constants), features (React Query hooks and Zustand stores) and ui (Tamagui components). Adding a field is one edit propagated by the type system, instead of a race between two codebases that would have drifted within a week.",
+      "Data sits in Supabase — PostgreSQL with row-level security and realtime subscriptions — so authorisation lives next to the data rather than being reimplemented per client. Subscription entitlements go through RevenueCat, which keeps receipt validation and cross-platform restore out of application code.",
+      "Shipping to an app store demanded a rigour that web deploys never teach. Privacy disclosures have to match what the code actually does. In-app purchase flows must be exercisable by a reviewer whose sandbox does not behave like a real account. User-generated content needs a moderation path on day one, not bolted on after the first incident. None of this is surprising in hindsight; all of it is invisible until the first rejection.",
+    ],
+    body_ja: [
+      "Aporix はアイデア共有プラットフォーム。誰かがアイデアを投稿し、他のユーザーが「これ欲しい」をタップして需要のシグナルを出し、開発者はそのシグナル順に閲覧する。2026年4月に App Store で公開した。",
+      "構造上の判断はリポジトリを分けずに Turborepo のモノレポにしたこと。Expo のモバイルアプリと Next.js の Web アプリが3つのパッケージを共有している——db（Supabase クライアント、生成した型、テーブル定数）、features（React Query のフックと Zustand ストア）、ui（Tamagui コンポーネント）。フィールドを1つ足す作業が「1箇所の編集＋型システムによる伝播」で済む。2つのコードベースを別々に育てていたら、1週間でズレていたはずだ。",
+      "データは Supabase——PostgreSQL に行レベルセキュリティとリアルタイム購読が付いたもの。認可がデータのすぐ隣にあるので、クライアントごとに実装し直さずに済む。サブスクの権利管理は RevenueCat に寄せ、レシート検証とプラットフォーム跨ぎの復元をアプリケーションコードから追い出した。",
+      "アプリストアへの出荷は、Webのデプロイでは身につかない厳密さを要求してくる。プライバシー開示はコードの実挙動と一致していなければならない。アプリ内課金のフローは、実アカウントのようには振る舞わないサンドボックスでレビュアーが検証できる必要がある。ユーザー投稿コンテンツのモデレーション経路は、最初の事故の後ではなく初日から要る。振り返れば当然のことばかりだが、最初のリジェクトを食らうまでは全部見えない。",
+    ],
     type: "mobile",
   },
   {
@@ -145,6 +169,18 @@ export const projects: Project[] = [
     ],
     tags: ["Next.js 16", "React 19", "AI SDK 6", "Vercel AI Gateway", "BotID", "Tailwind 4", "shadcn/ui", "TypeScript"],
     link: "https://unbias-cv.vercel.app/",
+    body: [
+      "Unbias JD reads a job advert and reports where the wording quietly excludes people — gendered phrasing, age signals, ableist defaults, nativism, culture-fit shorthand, elitist credentialism — then offers a neutral rewrite. English and Japanese.",
+      "Detection runs in two layers rather than one. A lexicon scan catches known phrases deterministically, fast and free; a contextual LLM pass through the Vercel AI Gateway then judges what a word list cannot — whether a phrase is actually exclusionary in this sentence. Splitting them matters because each covers the other's blind spot: the lexicon never hallucinates, the model never misses a novel phrasing.",
+      "The two layers also degrade independently. Without an API key the app still runs the lexicon scan and surfaces a banner explaining that the contextual pass is unavailable, instead of failing shut. URL fetching goes through Mozilla Readability with SSRF protection, and the AI-backed routes sit behind Vercel BotID so the expensive path is not free to script against.",
+      "There is no database. Pasted text is sent to the gateway for the contextual pass and is never persisted by the app — a deliberate constraint, because the input is often an unpublished job advert and asking someone to upload that to a stranger's server is a bigger ask than the tool is worth.",
+    ],
+    body_ja: [
+      "Unbias JD は求人票を読み、書き方が静かに人を排除している箇所を指摘する——性別を含意する表現、年齢のシグナル、健常者を前提とした書き方、国籍・文化の内輪言葉、学歴主義。そのうえで中立的な言い換えを提示する。英語・日本語対応。",
+      "検出は1層ではなく2層構成にした。辞書ベースのスキャンが既知の表現を決定論的に、高速かつ無料で拾う。そのうえで Vercel AI Gateway 経由の文脈解析LLMが、語彙リストには判定できないもの——その文脈でその表現が実際に排他的なのか——を見る。分けている理由は、互いの死角を埋めるからだ。辞書は幻覚を起こさない。モデルは初見の言い回しを見逃さない。",
+      "2層は独立して劣化する設計にしてある。APIキーが無い環境でも辞書スキャンだけは動き、「文脈解析は利用できない」とバナーで明示する。落ちるのではなく、できる範囲で動く。URL取り込みは Mozilla Readability を通し SSRF 対策を入れ、AI を使う経路は Vercel BotID の背後に置いた。コストのかかる経路をスクリプトで自由に叩かせないためだ。",
+      "データベースは持たない。貼り付けられたテキストは文脈解析のためにゲートウェイへ送られるが、このアプリ側には一切保存しない。意図的な制約で、入力は多くの場合まだ公開していない求人票だからだ。それを見知らぬサーバーにアップロードしてくれと頼むのは、このツールの価値に釣り合わない要求になる。",
+    ],
     type: "ai",
   },
   {
