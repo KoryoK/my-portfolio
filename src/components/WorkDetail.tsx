@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ArrowUpRight } from 'lucide-react';
-import type { Work } from './data/works';
+import type { Work } from '@/data/works';
 
 interface WorkDetailProps {
   work: Work | null;

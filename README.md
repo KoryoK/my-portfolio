@@ -1,20 +1,32 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# koryo-kakinoki.com
 
-# Run and deploy your AI Studio app
+Portfolio and journal for Koryo Kakinoki (柿木滉亮) — GenAI engineer, data analyst and trainer.
 
-This contains everything you need to run your app locally.
+Next.js 16 (App Router) + Tailwind 4, statically generated and deployed on Vercel.
 
-View your app in AI Studio: https://ai.studio/apps/8d1af035-a82c-4359-b3bd-7a8882c5da25
+## Run locally
 
-## Run Locally
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build (all routes prerendered)
+npm run lint     # tsc --noEmit
+```
 
-**Prerequisites:**  Node.js
+## Content
 
+All content lives in `src/data/*.ts` as typed arrays — there is no CMS. Adding an entry
+publishes its page, sitemap entry and (for posts) OG image automatically.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+| File | Drives |
+| --- | --- |
+| `works.ts` | Career timeline on the home page |
+| `projects.ts` | `/projects` and `/projects/[slug]` |
+| `blog.ts` | `/blog` and `/blog/[slug]` |
+| `services.ts` | Services section |
+| `training.ts` | Training section |
+
+Every entry needs both languages: `_ja` fields are Japanese, the plain fields are English.
+Japanese is served at the root, English under `/en`, with hreflang links between them.
+
+See `.claude/skills/add-entry/SKILL.md` for the entry-authoring workflow.

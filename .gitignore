@@ -1,5 +1,6 @@
 node_modules/
-.claude/
+.next/
+out/
 build/
 dist/
 coverage/
@@ -8,4 +9,6 @@ coverage/
 .env*
 !.env.example
 .gstack/
+.claude/
 blog-drafts/
+tsconfig.tsbuildinfo

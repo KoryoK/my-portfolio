@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ArrowUpRight, CheckCircle, AlertCircle } from 'lucide-react';
-import { trackEvent } from './analytics';
+import { trackEvent } from '@/lib/analytics';
 
 // ── Replace with your Formspree form ID after signing up at https://formspree.io
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mbdpzqno';

@@ -1,222 +1,30 @@
+'use client';
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion } from 'motion/react';
 import { Menu, X as CloseIcon, ArrowUpRight, Github, Linkedin, Twitter } from 'lucide-react';
-import { works } from './data/works';
-import type { Work } from './data/works';
-import { services } from './data/services';
-import { trainingPrograms } from './data/training';
-import { projects } from './data/projects';
-import type { Project } from './data/projects';
-import { posts } from './data/blog';
-import type { BlogPost } from './data/blog';
-import WorkDetail from './WorkDetail';
-import ProjectDetail from './ProjectDetail';
-import BlogDetail from './BlogDetail';
-import ContactForm from './ContactForm';
-import { trackEvent } from './analytics';
+import { works } from '@/data/works';
+import type { Work } from '@/data/works';
+import { services } from '@/data/services';
+import { trainingPrograms } from '@/data/training';
+import { projects } from '@/data/projects';
+import { posts } from '@/data/blog';
+import WorkDetail from '@/components/WorkDetail';
+import ContactForm from '@/components/ContactForm';
+import { trackEvent } from '@/lib/analytics';
+import { translations, skills, type Lang } from '@/lib/i18n';
+import { pathFor } from '@/lib/site';
 
-// ── Translations ──────────────────────────────────────────────────────────────
-const translations = {
-  ja: {
-    nav: {
-      cta: 'お問い合わせ →',
-      menu: 'メニュー',
-      home: 'ホーム',
-      works: '実績',
-      services: 'サービス',
-      training: '研修',
-      showcase: '開発実績',
-      blog: 'ブログ',
-      about: 'プロフィール',
-      contact: 'コンタクト',
-    },
-    hero: {
-      label: '柿木滉亮｜AIエンジニア・データ分析・PM',
-      bio: 'データを分析し、AIを実装し、グローバルチームを率いる。複雑な課題をシンプルな意思決定へ。',
-      quote: '「データは道を照らす。最後に決めるのは、人間の情理。」',
-      experience: '経験領域',
-      domains: ['システムインテグレーター', '外資金融', '生成AI', 'PM', 'データ分析', 'プロセス改善', 'UI/UX'],
-    },
-    works: {
-      title: '実績',
-      subtitle: 'グローバルなデータ利活用から、生成AIの社会実装まで。',
-    },
-    about: {
-      title: 'プロフィール',
-      tagline: 'データが戦略を導く。\nAIが実行を加速する。\nリーダーシップが実現させる。\n意思決定は、いつも人間の情理。',
-      p1: '外資金融、大手システムインテグレーター、そして生成AIエンジニア。テクノロジーとビジネスの架け橋となるプロジェクトを一貫して推進。',
-      p2: 'ロンドンでのクレジットアナリスト経験、欧州5カ国を跨ぐグローバルプロジェクトのマネジメント。多様な文化と業界を横断した、多角的な視点。',
-      p3: '現在はフリーランスとして、AIエンジニアメンターおよびデータ分析アドバイザーとして活動。データは強力な道具。しかし最後に決めるのは人間——論理と感性、情理のバランスを大切にしたクライアント支援。',
-      coreSkills: 'コアスキル',
-      location: '拠点',
-    },
-    capabilities: {
-      title: 'ケイパビリティ',
-    },
-    services: {
-      title: 'サービス',
-      subtitle: '作る・支援する — 開発・分析・自動化・PMで、課題を一緒に形にする。',
-      included: '提供内容',
-      cta: '相談する →',
-    },
-    training: {
-      title: '生成AI 研修・教育',
-      subtitle: '学ぶ・育てる — 生成AIウェビナーから企業研修、個人メンタリングまで。',
-      credibility: '受講者100名以上に登壇し、ブートキャンプ卒業生18名を完遂率100%で伴走。',
-      audience: '対象',
-      format: '形式',
-      duration: '時間・規模',
-      outcomes: '内容',
-    },
-    showcase: {
-      title: '開発実績',
-      subtitle: '自作アプリ・GAS・AIツールのポートフォリオ。',
-      viewProject: 'プロジェクトを見る',
-    },
-    blog: {
-      title: 'ブログ',
-      subtitle: 'データ・AI・リーダーシップの現場から。',
-      readMore: '続きを読む',
-      minRead: '分',
-      all: '全ての記事',
-    },
-    contact: {
-      title: 'コンタクト',
-      body: 'データ戦略、AIエンジニアリング、リーダーシップに関するご相談、受付中。あなたのビジネスに「自分らしさ」と「効率」を。',
-      reply: '24時間以内にご返信します。',
-      cta: 'お問い合わせはこちら →',
-    },
-    footer: { career: '実績', services: 'サービス', showcase: '開発実績', blog: 'ブログ', profile: 'プロフィール' },
-  },
-  en: {
-    nav: {
-      cta: "Let's work →",
-      menu: 'Menu',
-      home: 'Home',
-      works: 'Works',
-      services: 'Services',
-      training: 'Training',
-      showcase: 'Showcase',
-      blog: 'Journal',
-      about: 'About',
-      contact: 'Contact',
-    },
-    hero: {
-      label: 'Koryo Kakinoki — AI Engineer · Data · PM',
-      bio: 'I analyse data, engineer AI solutions, and lead global teams — turning complexity into decisions that move organisations forward.',
-      quote: '"Data lights the way. The final decision always belongs to people."',
-      experience: 'Experience',
-      domains: ['System Integrator', 'Finance', 'GenAI', 'PM', 'Data Analytics', 'Process Opt.', 'UI/UX'],
-    },
-    works: {
-      title: 'Career Highlights',
-      subtitle: 'From global data modernisation to deploying generative AI at scale.',
-    },
-    about: {
-      title: 'Profile',
-      tagline: "Data informs strategy.\nAI accelerates execution.\nLeadership makes it real.\nThe final decision always belongs to people.",
-      p1: 'Through experience in international finance, major system integrators, and generative AI engineering, I have driven projects that bridge technology and business.',
-      p2: 'My time as a credit analyst in London and managing global projects across five European countries has shaped my cross-cultural perspective.',
-      p3: 'Now freelancing as an AI engineer mentor and data analytics advisor, I believe data is a powerful tool — but the final decision always belongs to people. I help clients act on insight with both rigour and human judgement.',
-      coreSkills: 'Core Skills',
-      location: 'Location',
-    },
-    capabilities: {
-      title: 'Capabilities',
-    },
-    services: {
-      title: 'Services',
-      subtitle: 'Build & advisory — engineering, analytics, automation, and delivery.',
-      included: "What's included",
-      cta: 'Get in touch →',
-    },
-    training: {
-      title: 'Generative AI Training',
-      subtitle: 'Learn & grow — from generative AI webinars to corporate training and 1-on-1 mentoring.',
-      credibility: 'Taught audiences of 100+ and guided 18 bootcamp graduates to a 100% completion rate.',
-      audience: 'For',
-      format: 'Format',
-      duration: 'Scale',
-      outcomes: 'Curriculum',
-    },
-    showcase: {
-      title: 'Dev Showcase',
-      subtitle: 'Apps, GAS projects, and AI tools I have built.',
-      viewProject: 'View project',
-    },
-    blog: {
-      title: 'Journal',
-      subtitle: 'Field notes on data, AI, and leadership.',
-      readMore: 'Read more',
-      minRead: 'min read',
-      all: 'All posts',
-    },
-    contact: {
-      title: 'Connect',
-      body: "Open for consulting on data strategy, AI engineering, and leadership. Let's bring uniqueness and efficiency to your business.",
-      reply: 'I reply within 24 hours.',
-      cta: 'Start a conversation →',
-    },
-    footer: { career: 'Career', services: 'Services', showcase: 'Showcase', blog: 'Journal', profile: 'Profile' },
-  },
-} as const;
-
-type Lang = keyof typeof translations;
-
-// ── Skills data (bilingual) ───────────────────────────────────────────────────
-const skills = [
-  {
-    name: "Python / SQL",
-    level: "Expert", level_ja: "エキスパート",
-    description: "Automating analysis that used to take your team days",
-    description_ja: "チームが数日かけていた分析を自動化します",
-  },
-  {
-    name: "GenAI / LLM / RAG",
-    level: "Lead", level_ja: "リード",
-    description: "Building AI products that actually work in production",
-    description_ja: "本番環境で実際に動くAIプロダクトを構築します",
-  },
-  {
-    name: "Tableau / Power BI",
-    level: "Expert", level_ja: "エキスパート",
-    description: "Turning raw data into decisions leadership can act on",
-    description_ja: "生データを経営層が動ける意思決定情報へ変換します",
-  },
-  {
-    name: "Project Management",
-    level: "Senior", level_ja: "シニア",
-    description: "Shipping complex cross-functional work on time",
-    description_ja: "複雑なクロスファンクショナルプロジェクトを期日通りに完遂します",
-  },
-  {
-    name: "GAS / Automation",
-    level: "Advanced", level_ja: "アドバンスト",
-    description: "Eliminating repetitive work across your org",
-    description_ja: "組織全体の繰り返し業務を排除します",
-  },
-  {
-    name: "UI/UX Direction",
-    level: "Senior", level_ja: "シニア",
-    description: "Making tools people actually want to use",
-    description_ja: "人が本当に使いたいと思えるツールを設計します",
-  },
-];
-
-
-// ── App ───────────────────────────────────────────────────────────────────────
-export default function App() {
-  const [lang, setLang] = useState<Lang>('ja');
+export default function HomePage({ lang }: { lang: Lang }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [selectedWork, setSelectedWork] = useState<Work | null>(null);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
 
   const t = translations[lang];
   const isJa = lang === 'ja';
@@ -251,19 +59,21 @@ export default function App() {
       const work = works.find(w => w.id === id) ?? null;
       if (work) setSelectedWork(work);
     }
+    // Legacy deep links (#post-<slug>) predate the /blog/<slug> routes — forward them.
     if (hash.startsWith('#post-')) {
       const slug = hash.replace('#post-', '');
-      const post = posts.find(p => p.slug === slug) ?? null;
-      if (post) setSelectedPost(post);
+      if (posts.some(p => p.slug === slug)) {
+        window.location.replace(pathFor(lang, `blog/${slug}`));
+        return;
+      }
     }
     const handlePop = () => {
       const h = window.location.hash;
       if (!h.startsWith('#work-')) setSelectedWork(null);
-      if (!h.startsWith('#post-')) setSelectedPost(null);
     };
     window.addEventListener('popstate', handlePop);
     return () => window.removeEventListener('popstate', handlePop);
-  }, []);
+  }, [lang]);
 
   const menuLinks = [
     ['home', '#home'],
@@ -295,15 +105,17 @@ export default function App() {
           {/* Language tab */}
           <div className="flex items-center border border-text-light/20 rounded-full text-xs font-semibold tracking-widest">
             {(['ja', 'en'] as Lang[]).map((l) => (
-              <button
+              <Link
                 key={l}
-                onClick={() => setLang(l)}
+                href={pathFor(l)}
+                hrefLang={l}
+                aria-current={lang === l ? 'true' : undefined}
                 className={`px-3 py-1.5 uppercase transition-colors duration-200 rounded-full ${
                   lang === l ? 'bg-accent text-white' : 'hover:text-accent'
                 }`}
               >
                 {l}
-              </button>
+              </Link>
             ))}
           </div>
 
@@ -527,12 +339,6 @@ export default function App() {
 
       {/* Case Study Overlay */}
       <WorkDetail work={selectedWork} onClose={() => setSelectedWork(null)} lang={lang} />
-
-      {/* Project Detail Overlay */}
-      <ProjectDetail project={selectedProject} onClose={() => setSelectedProject(null)} lang={lang} />
-
-      {/* Blog Detail Overlay */}
-      <BlogDetail post={selectedPost} onClose={() => setSelectedPost(null)} lang={lang} />
 
       {/* About Section */}
       <section id="about" className="py-32 px-6 md:px-12 bg-bg-light text-text-dark">
@@ -823,14 +629,13 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {projects.map((project, i) => (
+              <Link key={project.id} href={pathFor(lang, `projects/${project.slug}`)} className="block">
               <motion.div
-                key={project.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group border border-text-light/10 hover:border-accent transition-colors duration-500 cursor-pointer"
-                onClick={() => setSelectedProject(project)}
+                className="group h-full border border-text-light/10 hover:border-accent transition-colors duration-500 cursor-pointer"
               >
                 {/* Screenshot thumbnail */}
                 <div
@@ -882,6 +687,7 @@ export default function App() {
                   </div>
                 </div>
               </motion.div>
+              </Link>
             ))}
           </div>
         </div>
@@ -909,14 +715,13 @@ export default function App() {
 
           <div className="flex flex-col">
             {posts.map((post, i) => (
+              <Link key={post.id} href={pathFor(lang, `blog/${post.slug}`)} className="block">
               <motion.article
-                key={post.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
                 className="group cursor-pointer border-t border-text-light/10 last:border-b py-8 md:py-10 grid grid-cols-1 md:grid-cols-[160px_1fr_auto] gap-4 md:gap-8 items-start hover:bg-text-light/[0.02] transition-colors duration-300 px-2 md:px-4 -mx-2 md:-mx-4"
-                onClick={() => setSelectedPost(post)}
               >
                 <div className="text-xs font-mono text-text-muted uppercase tracking-widest flex flex-col gap-1">
                   <span className="text-accent">
@@ -950,6 +755,7 @@ export default function App() {
                   />
                 </div>
               </motion.article>
+              </Link>
             ))}
           </div>
         </div>
