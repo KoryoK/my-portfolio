@@ -7,6 +7,12 @@ export interface Project {
   description_ja: string;
   images: string[]; // first image used as card thumbnail
   tags: string[];
+  /**
+   * Long-form write-up shown on /projects/<slug>. Plain paragraphs, no markdown.
+   * Optional: projects backed by a full blog post can rely on that instead.
+   */
+  body?: string[];
+  body_ja?: string[];
   link?: string;
   linkLabel?: string;
   linkLabel_ja?: string;
@@ -34,6 +40,18 @@ export const projects: Project[] = [
     appLink: "https://tourney-app-seven.vercel.app",
     appLinkLabel: "Open the live app",
     appLinkLabel_ja: "公開中のアプリを見る",
+    body: [
+      "tourney-app runs amateur volleyball tournaments end to end: an organiser signs up, pays through Stripe checkout, and gets a tournament they can operate the same day — team registration, match schedule, live score entry, standings and bracket, plus a public page spectators can follow without an account.",
+      "The structural decision was tenancy. Rather than one deployment per club, tenants are path-based (/t/<slug>), so a single instance serves every tournament and a new one costs nothing to stand up. Old single-tournament URLs 301 to their tenant path for six months before returning 410, so early links do not rot silently.",
+      "Billing is a weekly pass rather than a subscription, because a tournament is an event, not an ongoing service — nobody wants to remember to cancel. Tenants created but never paid for are removed by a Vercel cron job after seven days, which keeps the slug namespace clean without anyone policing it manually.",
+      "The landing page deliberately borrows a dark HUD aesthetic that is off-genre for amateur sport, while every operational screen keeps a plain, high-legibility theme. Admins type scores fast in a noisy gym and spectators check results on phones; mood belongs on the front door, not in the scoreboard. Playwright end-to-end tests cover the auth, billing and scoring paths, and the commerce disclosures Japanese law requires ship as first-class pages rather than a footer afterthought.",
+    ],
+    body_ja: [
+      "tourney-app はアマチュアのバレーボール大会運営を最初から最後まで回すためのSaaS。主催者が登録してStripeで決済すると、その日のうちに運営を始められる状態になる——チーム登録、試合スケジュール、当日のスコア入力、順位表と決勝トーナメント表。観戦者はアカウント無しで公開ページから結果を追える。",
+      "構造上の要はテナント分離だった。団体ごとに環境を立てるのではなく、パスベース（/t/<slug>）で1インスタンスが全大会を捌く設計にした。新しい大会を立ち上げるコストがゼロになる。旧URLは6ヶ月間301でテナントパスへ転送し、その後410を返す。初期に共有されたリンクが黙って壊れないようにしている。",
+      "課金はサブスクではなく1週間の利用権にした。大会は継続サービスではなくイベントで、解約を覚えておきたい人はいないからだ。作られたまま決済されなかったテナントは、7日後にVercelのcronが物理削除する。slug名前空間を人手で見張らなくても綺麗に保てる。",
+      "ランディングページはアマチュアスポーツにはあえて似合わない暗色のHUD調にし、運営画面はすべて素直な高可読テーマのままにした。管理者は騒がしい体育館で急いでスコアを打ち、観戦者はスマホで結果を見る。雰囲気は玄関に置くもので、スコアボードに持ち込むものではない。認証・課金・スコア入力の経路はPlaywrightのE2Eで押さえ、特定商取引法まわりの表記はフッターの付け足しではなく独立ページとして用意している。",
+    ],
     type: "webapp",
   },
   {
@@ -147,6 +165,18 @@ export const projects: Project[] = [
     description_ja: "公開APIを持たないレガシーWebポータルを自動操作するPythonパイプライン。Playwrightのヘッドレスブラウザでログイン・DOMスクレイピング・フォーム送信を行い、日本の祝日を考慮したスケジューラ、またはHMAC検証付きLINE Webhook経由のチャットコマンドで起動。実行結果はLINEとメールに通知し、失敗時はスクリーンショットを証跡として保存。",
     images: ["/screenshots/web-automation-1.png"],
     tags: ["Python", "Playwright", "Web Scraping", "LINE Messaging API", "Flask", "Scheduling"],
+    body: [
+      "Some systems worth automating have no API at all. This one drives a legacy public web portal the only way available — a real browser, driven headlessly by Playwright: session login, DOM scraping to read current state, then filling and submitting the form.",
+      "Two things trigger a run. A scheduler that understands the Japanese calendar, so it skips weekends and public holidays instead of firing pointlessly; and a chat command, handled by a small Flask webhook that verifies the LINE signature via HMAC before it will execute anything. An endpoint that runs a browser on request is exactly the kind of thing that must not accept unsigned input.",
+      "Every run reports to two channels — LINE push with per-target routing, and an SMTP email — because a silent automation is indistinguishable from a broken one. On failure the browser captures a screenshot before exiting, so the log says not just that the run failed but what the page actually looked like at that moment. That single habit turned most debugging from guesswork into reading.",
+      "Roughly 5,700 lines of Python. Nothing about it is clever; it is mostly the unglamorous work of making a brittle integration observable and safe to leave running unattended.",
+    ],
+    body_ja: [
+      "自動化する価値のあるシステムが、APIを一切持っていないことがある。これはそういうレガシーなWebポータルを、唯一可能な方法——Playwrightで動かすヘッドレスの実ブラウザ——で操作するパイプライン。セッションログイン、DOMスクレイピングで現在の状態を読み、フォームを埋めて送信する。",
+      "起動のトリガーは2つ。日本の暦を理解するスケジューラで、土日祝は空振りせずスキップする。もう1つはチャットコマンドで、小さなFlaskのWebhookがLINEの署名をHMACで検証してから初めて実行する。リクエストでブラウザを起動するエンドポイントは、署名の無い入力を絶対に受け付けてはいけない類のものだ。",
+      "実行結果は必ず2系統に通知する——宛先別ルーティング付きのLINEプッシュと、SMTPのメール。黙っている自動化は、壊れている自動化と見分けがつかないからだ。失敗時はブラウザが終了前にスクリーンショットを撮る。ログに残るのが「失敗した」だけでなく「その瞬間ページがどう見えていたか」になる。この習慣ひとつで、デバッグの大半が推測から読解に変わった。",
+      "Pythonで約5,700行。技巧的なところは何もない。壊れやすい連携を観測可能にし、放っておいても安全に回る状態にするための、地味な作業がほとんどを占めている。",
+    ],
     type: "automation",
   },
 ];

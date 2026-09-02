@@ -22,6 +22,7 @@ const COPY = {
 export default function ProjectView({ project, lang }: { project: Project; lang: Lang }) {
   const isJa = lang === 'ja';
   const c = COPY[lang];
+  const body = isJa ? project.body_ja : project.body;
 
   return (
     <article className="max-w-4xl mx-auto px-6 md:px-12 py-16 md:py-24">
@@ -38,6 +39,14 @@ export default function ProjectView({ project, lang }: { project: Project; lang:
       <p className="mt-6 text-text-muted leading-relaxed max-w-2xl">
         {isJa ? project.description_ja : project.description}
       </p>
+
+      {body && (
+        <div className="mt-10 flex flex-col gap-6 leading-relaxed max-w-2xl">
+          {body.map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
+        </div>
+      )}
 
       <h2 className="mt-12 text-xs font-mono uppercase tracking-widest text-text-muted">{c.stack}</h2>
       <div className="mt-3 flex flex-wrap gap-2">
