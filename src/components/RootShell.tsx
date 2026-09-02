@@ -32,6 +32,16 @@ export default function RootShell({
 }) {
   return (
     <html lang={lang} className={`${inter.variable} ${notoSansJp.variable}`}>
+      <head>
+        {/*
+          Scroll-reveal animations serialise their hidden initial state into the SSR
+          markup (style="opacity:0;..."). Text extractors ignore inline CSS, but a
+          reader without JS would see a mostly blank page, so pin the finished state.
+        */}
+        <noscript>
+          <style>{'[style*="opacity:0"]{opacity:1!important;transform:none!important}'}</style>
+        </noscript>
+      </head>
       <body>
         {children}
         <Script
