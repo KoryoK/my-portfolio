@@ -30,8 +30,8 @@ export const trainingPrograms: TrainingProgram[] = [
     id: 1,
     title: "Generative AI Webinars",
     title_ja: "生成AIウェビナー",
-    tagline: "Get your whole team fluent in what AI can — and can't — do.",
-    tagline_ja: "「今できること・できないこと」を、チーム全員の共通言語に。",
+    tagline: "Built on webinars for 100+ attendees — get your whole team fluent in what AI can and can't do.",
+    tagline_ja: "受講者100名以上の登壇実績をもとに、生成AIの「今できること・できないこと」をチームの共通言語に。",
     description:
       "Live online sessions that bring a whole team or community up to speed on generative AI. Built on instructing webinars for audiences of 100+, with real working demos instead of abstract theory.",
     description_ja:
@@ -63,8 +63,8 @@ export const trainingPrograms: TrainingProgram[] = [
     id: 2,
     title: "GenAI Foundations Workshop",
     title_ja: "生成AI 使い方 基礎研修",
-    tagline: "Turn “I tried ChatGPT” into “we get results with it.”",
-    tagline_ja: "「触ってみた」を「成果が出る」に変える。",
+    tagline: "A half-day hands-on workshop that turns “I tried ChatGPT” into “we get results with it.”",
+    tagline_ja: "半日のハンズオン研修で、「触ってみた」を「成果が出る」に変える。",
     description:
       "A hands-on workshop that gets a working team producing real results with generative AI — using your own tasks as the material, not toy examples.",
     description_ja:
@@ -96,8 +96,8 @@ export const trainingPrograms: TrainingProgram[] = [
     id: 3,
     title: "Custom Corporate Training",
     title_ja: "企業研修（カスタム）",
-    tagline: "Embed AI into how your organisation actually works.",
-    tagline_ja: "自社の業務に合わせて、AI活用を組織に根付かせる。",
+    tagline: "Corporate GenAI training designed around your business, tools and policies — in Japanese or English.",
+    tagline_ja: "御社の業務・ツール・規程に合わせて設計する、生成AIの企業研修プログラム。日英対応。",
     description:
       "A corporate generative-AI training program designed around your business, tools, and policies — from goal-setting through follow-up. Drawing on leading a data-modernisation program across six European countries, delivered in Japanese or English.",
     description_ja:
@@ -129,8 +129,8 @@ export const trainingPrograms: TrainingProgram[] = [
     id: 4,
     title: "1-on-1 Mentoring",
     title_ja: "個人メンタリング（1on1）",
-    tagline: "Learn at your pace, with someone who's shipped real AI.",
-    tagline_ja: "現役エンジニアと、自分のペースで体系的に。",
+    tagline: "1-on-1 mentoring with a working AI engineer — 18 bootcamp graduates guided to a 100% completion rate.",
+    tagline_ja: "卒業生18名・完遂率100%の伴走実績をもとにした、現役エンジニアとの1on1メンタリング。",
     description:
       "Personal one-on-one training shaped around where you are now and where you want to go. Built on guiding 18 bootcamp graduates to a 100% completion rate — nobody left behind.",
     description_ja:

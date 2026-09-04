@@ -19,12 +19,12 @@ export const services: Service[] = [
     id: 1,
     title: "GenAI Engineering",
     title_ja: "生成AI開発・実装",
-    tagline: "From prototype to production — generative AI built into your real workflows.",
-    tagline_ja: "試作から本番へ。生成AIを、実業務の中に組み込む。",
+    tagline: "LLM, RAG and Dify systems built end to end — from prototype to production, inside your real workflows.",
+    tagline_ja: "LLM・RAG・Difyによる生成AIシステムを、試作から本番運用まで一気通貫で開発。",
     description:
       "Hands-on engineering and advisory for businesses adopting generative AI. I build LLM, RAG, and Dify-based workflow automation around your real use cases — from first prototype through to production deployment, not slideware.",
     description_ja:
-      "生成AIを導入する事業者向けのハンズオン開発・導入支援。LLM・RAG・Difyによるワークフロー自動化を、サンプルではなく「あなたの実業務」に合わせて構築します。要件相談から試作、本番運用までを一気通貫で伴走します。",
+      "生成AIを導入する企業向けの、ハンズオンでの開発・導入支援サービスです。LLM・RAG・Difyによるワークフロー自動化を、サンプルではなく「あなたの実業務」に合わせて構築します。要件相談から試作、本番運用までを一気通貫で伴走します。",
     deliverables: [
       "LLM / RAG / Dify solution design & build",
       "Workflow automation around your real use cases",
@@ -45,12 +45,12 @@ export const services: Service[] = [
     id: 2,
     title: "Data Analytics Advisory",
     title_ja: "データ分析アドバイザリー",
-    tagline: "Stop guessing. Decide on what the data actually shows.",
-    tagline_ja: "勘ではなく、データが示す事実で意思決定を。",
+    tagline: "From KPI design to Tableau / Power BI dashboards — analytics your leadership can actually decide on.",
+    tagline_ja: "KPI設計からTableau／Power BIダッシュボードまで、経営判断に使えるデータ分析を支援。",
     description:
       "Advisory support for turning raw data into decisions leadership can act on. From KPI definition to Tableau / Power BI dashboards, drawing on global data-strategy and BI delivery experience across European markets.",
     description_ja:
-      "生データを、経営層が動ける意思決定情報へ。KPI設計からTableau／Power BIダッシュボード構築まで、欧州各国にまたがるグローバルデータ戦略・BI構築の経験をもとにアドバイザーとして支援します。",
+      "生データを、経営層が動ける意思決定情報へ変換するアドバイザリーサービスです。KPI設計からTableau／Power BIダッシュボード構築まで、欧州6カ国のデータ近代化プログラムでのBI構築経験をもとに支援します。",
     deliverables: [
       "KPI / metric definition aligned to your goals",
       "Tableau / Power BI dashboard design & build",
@@ -70,12 +70,12 @@ export const services: Service[] = [
     id: 3,
     title: "No-Code / Low-Code Automation",
     title_ja: "ノーコード/ローコード自動化",
-    tagline: "Eliminate the repetitive work draining your team's week.",
-    tagline_ja: "チームの時間を奪う繰り返し業務を、仕組みで無くす。",
+    tagline: "GAS, Make.com and Notion automation that removes the repetitive work draining your team's week.",
+    tagline_ja: "GAS・Make.com・Notionで、チームの時間を奪う繰り返し業務を自動化。",
     description:
       "Design and build automation with GAS, Make.com, Notion, and low-code tools to remove repetitive manual work — freeing your team to focus on the decisions that actually need a human.",
     description_ja:
-      "GAS・Make.com・Notion・ローコードツールを活用し、繰り返しの手作業を自動化する仕組みを設計・構築します。本当に人の判断が必要な仕事に、チームの時間を取り戻します。",
+      "GAS・Make.com・Notion・ローコードツールで、繰り返しの手作業を自動化する仕組みを設計・構築するサービスです。4時間の作業を3分に短縮した実績をもとに、本当に人の判断が必要な仕事へチームの時間を取り戻します。",
     deliverables: [
       "Workflow audit to find automation opportunities",
       "GAS / Make.com / low-code build & deployment",
@@ -95,8 +95,8 @@ export const services: Service[] = [
     id: 4,
     title: "Project Management & App Development",
     title_ja: "プロジェクトマネジメント & アプリ開発",
-    tagline: "Own delivery end to end — from requirements to a shipped product.",
-    tagline_ja: "要件定義から納品まで。「作って届ける」を一気通貫で。",
+    tagline: "Project management and app development owned end to end — from requirements to a shipped product.",
+    tagline_ja: "要件定義から納品まで、プロジェクト推進とアプリ開発を一気通貫で担当。",
     description:
       "End-to-end ownership of your project: requirements, planning, hands-on development, and delivery. Drawing on leading a data-modernisation program across six European countries and shipping my own apps to the App Store and beyond.",
     description_ja:

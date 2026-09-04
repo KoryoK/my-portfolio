@@ -7,13 +7,13 @@ const COPY = {
     title: '柿木滉亮｜Koryo Kakinoki — 生成AIエンジニア・データ分析・研修',
     template: '%s｜柿木滉亮',
     description:
-      '柿木滉亮（Koryo Kakinoki）｜フリーランスの生成AIエンジニア・データアナリスト。LLM/RAG/Difyの開発実装、データ分析、業務自動化、PM・アプリ開発、そして企業向け生成AI研修・個人メンタリングまで。外資系金融・大手SIer出身。',
+      '柿木滉亮（Koryo Kakinoki）｜神奈川県拠点のフリーランス生成AIエンジニア・データアナリスト・PM。LLM/RAG/Difyの開発実装、Tableau/Power BIによるデータ分析、業務自動化、PM・アプリ開発、企業向け生成AI研修・個人メンタリングを日英で提供。ロンドンの政府系銀行・大手SIer出身。',
   },
   en: {
     title: 'Koryo Kakinoki — GenAI Engineer, Data Analyst & Trainer',
     template: '%s | Koryo Kakinoki',
     description:
-      'Koryo Kakinoki — freelance generative-AI engineer and data analyst. LLM/RAG/Dify builds, analytics, workflow automation, project management, and corporate GenAI training. Ex-credit analyst in London; data modernisation PM across six European countries.',
+      'Koryo Kakinoki — freelance generative-AI engineer, data analyst and project manager based in Kanagawa, Japan. LLM/RAG/Dify builds, Tableau/Power BI analytics, workflow automation, and corporate GenAI training in Japanese and English. Ex-credit analyst in London; data modernisation PM across six European countries.',
   },
 } as const;
 
