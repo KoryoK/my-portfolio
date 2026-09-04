@@ -206,8 +206,10 @@ export default function HomePage({ lang }: { lang: Lang }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              <span className="text-accent font-semibold text-xs md:text-base tracking-[0.18em] md:tracking-[0.3em] uppercase mb-6 block">{t.hero.label}</span>
-              <h1 className={`text-[clamp(3rem,7vw,6.5rem)] font-extrabold mb-10 ${isJa ? 'leading-[1.1]' : 'leading-[0.85]'}`}>
+              {/* The name + role line is the h1: it is what search and answer engines read as the
+                  page subject. The three-word display block below is visual identity, so it stays a <p>. */}
+              <h1 className="text-accent font-semibold text-xs md:text-base tracking-[0.18em] md:tracking-[0.3em] uppercase mb-6 block">{t.hero.label}</h1>
+              <p className={`text-[clamp(3rem,7vw,6.5rem)] font-extrabold mb-10 ${isJa ? 'leading-[1.1]' : 'leading-[0.85]'}`}>
                 {isJa ? (
                   <>
                     分析<br />
@@ -221,7 +223,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
                     STRATEGY
                   </>
                 )}
-              </h1>
+              </p>
             </motion.div>
 
             <motion.div
