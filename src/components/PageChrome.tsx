@@ -3,8 +3,8 @@ import type { Lang } from '@/lib/i18n';
 import { pathFor, AUTHOR } from '@/lib/site';
 
 const COPY = {
-  ja: { home: 'ホーム', blog: 'ブログ', projects: '開発実績', contact: 'お問い合わせ' },
-  en: { home: 'Home', blog: 'Journal', projects: 'Showcase', contact: 'Contact' },
+  ja: { home: 'ホーム', training: '研修', blog: 'ブログ', projects: '開発実績', contact: 'お問い合わせ' },
+  en: { home: 'Home', training: 'Training', blog: 'Journal', projects: 'Showcase', contact: 'Contact' },
 } as const;
 
 /** Header + footer for sub-pages. Server component — links ship in the static HTML. */
@@ -24,7 +24,8 @@ export default function PageChrome({
         <Link href={pathFor(lang)} className="font-bold tracking-tighter text-sm md:text-base hover:text-accent transition-colors">
           {lang === 'ja' ? '柿木滉亮' : 'Koryo Kakinoki'}
         </Link>
-        <nav className="flex items-center gap-4 md:gap-6 text-xs font-semibold tracking-widest uppercase">
+        <nav className="flex items-center gap-3 md:gap-6 text-xs font-semibold tracking-wide sm:tracking-widest uppercase">
+          <Link href={pathFor(lang, 'training')} className="hover:text-accent transition-colors">{c.training}</Link>
           <Link href={pathFor(lang, 'blog')} className="hover:text-accent transition-colors">{c.blog}</Link>
           <Link href={pathFor(lang, 'projects')} className="hover:text-accent transition-colors">{c.projects}</Link>
           <Link href={`${pathFor(lang)}#contact`} className="hidden sm:inline hover:text-accent transition-colors">{c.contact}</Link>

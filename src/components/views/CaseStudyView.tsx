@@ -179,7 +179,7 @@ export default function CaseStudyView({ study, lang }: { study: CaseStudy; lang:
 
       <div className="mt-8">
         <Link
-          href={`${pathFor(lang)}#training`}
+          href={pathFor(lang, 'training')}
           className="inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase text-accent hover:gap-3 transition-all duration-300"
         >
           {c.related}

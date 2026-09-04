@@ -5,6 +5,7 @@ import { trainingPrograms } from '@/data/training';
 import type { BlogPost } from '@/data/blog';
 import type { Project } from '@/data/projects';
 import type { CaseStudy } from '@/data/casestudies';
+import { trainingPage } from '@/data/trainingPage';
 
 const PERSON_ID = `${SITE_URL}/#person`;
 
@@ -104,6 +105,52 @@ export function projectGraph(project: Project, lang: Lang) {
     keywords: project.tags.join(', '),
     ...(project.images[0] ? { image: `${SITE_URL}${project.images[0]}` } : {}),
     ...(project.appLink ? { url: project.appLink } : {}),
+  };
+}
+
+/** Service + FAQPage for the corporate training page. Answers are the same text the page renders. */
+export function trainingGraph(lang: Lang) {
+  const isJa = lang === 'ja';
+  const url = urlFor(lang, 'training');
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        '@id': `${url}#service`,
+        name: isJa ? '企業向け生成AI研修' : 'Corporate Generative AI Training',
+        serviceType: isJa ? '生成AI研修・ウェビナー・メンタリング' : 'Generative AI training, webinars and mentoring',
+        description: isJa ? trainingPage.lead_ja : trainingPage.lead,
+        url,
+        inLanguage: lang,
+        availableLanguage: ['ja', 'en'],
+        areaServed: [{ '@type': 'Country', name: 'Japan' }, { '@type': 'Place', name: 'Remote / worldwide' }],
+        provider: { '@id': PERSON_ID },
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: isJa ? '研修プログラム' : 'Training programmes',
+          itemListElement: trainingPrograms.map((p) => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: isJa ? p.title_ja : p.title,
+              description: isJa ? p.description_ja : p.description,
+              audience: { '@type': 'Audience', audienceType: isJa ? p.audience_ja : p.audience },
+            },
+          })),
+        },
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${url}#faq`,
+        inLanguage: lang,
+        mainEntity: trainingPage.faq.map((f) => ({
+          '@type': 'Question',
+          name: isJa ? f.q_ja : f.q,
+          acceptedAnswer: { '@type': 'Answer', text: isJa ? f.a_ja : f.a },
+        })),
+      },
+    ],
   };
 }
 

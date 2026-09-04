@@ -101,6 +101,39 @@ export function projectMetadata(slug: string, lang: Lang): Metadata {
   };
 }
 
+const TRAINING_COPY = {
+  ja: {
+    title: '企業向け生成AI研修・ウェビナー・メンタリング｜日本語・英語対応',
+    description:
+      '柿木滉亮（Koryo Kakinoki）が神奈川県を拠点に提供する企業向け生成AI研修。受講者100名以上のウェビナー、半日のハンズオン基礎研修、自社ユースケースで設計するカスタム企業研修、1on1メンタリング。対面・オンライン・ハイブリッド、日本語・英語対応。直近はエンジニア約70名・3日間の要件定義研修を設計。',
+  },
+  en: {
+    title: 'Corporate Generative AI Training in Japan — Bilingual (JA/EN)',
+    description:
+      'Corporate generative-AI training in Japanese and English by Koryo Kakinoki, a freelance GenAI engineer and trainer based in Kanagawa, Japan. Webinars for 100+, a half-day hands-on workshop, custom programmes built on your use cases, and 1-on-1 mentoring — on-site, online or hybrid. Latest engagement: a 3-day programme for ~70 engineers.',
+  },
+} as const;
+
+export function trainingMetadata(lang: Lang): Metadata {
+  const c = TRAINING_COPY[lang];
+  return {
+    title: c.title,
+    description: c.description,
+    keywords: lang === 'ja'
+      ? ['生成AI研修', '企業研修', '生成AI 講師', '生成AI ウェビナー', 'AI研修 英語', '要件定義 研修', 'メンタリング']
+      : ['corporate GenAI training', 'generative AI training Japan', 'bilingual AI trainer', 'AI workshop Tokyo', 'GenAI mentoring'],
+    alternates: alternatesFor('training', lang),
+    openGraph: {
+      type: 'website',
+      title: c.title,
+      description: c.description,
+      url: `${SITE_URL}${lang === 'en' ? '/en' : ''}/training`,
+      images: ['/og-image.png'],
+    },
+    twitter: { card: 'summary_large_image', title: c.title, description: c.description },
+  };
+}
+
 export function caseStudyMetadata(slug: string, lang: Lang): Metadata {
   const study = caseStudies.find((s) => s.slug === slug);
   if (!study) return {};

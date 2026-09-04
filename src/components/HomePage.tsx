@@ -545,6 +545,13 @@ export default function HomePage({ lang }: { lang: Lang }) {
             <p className="text-sm text-text-light/70 border-l-2 border-accent pl-4 max-w-2xl leading-relaxed">
               {t.training.credibility}
             </p>
+            <Link
+              href={pathFor(lang, 'training')}
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold tracking-widest uppercase text-accent hover:gap-3 transition-all duration-300"
+            >
+              {t.training.pageLink}
+              <ArrowUpRight size={16} />
+            </Link>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

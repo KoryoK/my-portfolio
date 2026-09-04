@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { ArrowUpRight, CheckCircle, AlertCircle } from 'lucide-react';
 import { trackEvent } from '@/lib/analytics';

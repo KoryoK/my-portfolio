@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     entry('', { priority: 1, changeFrequency: 'monthly', lastModified: latestPost }),
+    entry('training', { priority: 0.9, changeFrequency: 'monthly' }),
     entry('blog', { priority: 0.9, changeFrequency: 'weekly', lastModified: latestPost }),
     ...posts.map((p) =>
       entry(`blog/${p.slug}`, { priority: 0.8, changeFrequency: 'yearly', lastModified: p.date }),

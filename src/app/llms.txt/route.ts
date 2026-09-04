@@ -21,6 +21,8 @@ export function GET() {
     '',
     `Site: ${SITE_URL}`,
     `English: ${urlFor('en')}`,
+    `Corporate GenAI training (JA): ${urlFor('ja', 'training')}`,
+    `Corporate GenAI training (EN): ${urlFor('en', 'training')}`,
     '',
     '## Services',
     ...services.map((s) => `- ${s.title} / ${s.title_ja}: ${s.tagline}`),
