@@ -12,3 +12,4 @@ coverage/
 .claude/
 blog-drafts/
 tsconfig.tsbuildinfo
+thumbnails/
