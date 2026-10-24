@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { posts } from '@/data/blog';
+import { notes, noteUrl } from '@/data/notes';
 import type { Lang } from '@/lib/i18n';
-import { pathFor } from '@/lib/site';
+import { AUTHOR, pathFor } from '@/lib/site';
 
 const COPY = {
   ja: { title: 'ブログ', lead: '開発記・研修設計・データ分析の実践記録。', count: '記事', min: '分' },
@@ -56,6 +57,47 @@ export default function BlogIndexView({ lang }: { lang: Lang }) {
           </Link>
         ))}
       </div>
+
+      {isJa ? (
+        <section className="mt-20" aria-labelledby="note-list">
+          <h2 id="note-list" className="text-2xl md:text-3xl font-bold tracking-tight">noteの記事</h2>
+          <p className="mt-3 text-sm text-text-muted leading-relaxed">
+            note.comで公開している記事のうち、上のブログとは別に読めるものです。リンク先はnoteです。
+          </p>
+          <ul className="mt-8 flex flex-col">
+            {notes.map((n) => (
+              <li key={n.key} className="border-t border-text-light/10 last:border-b">
+                <a
+                  href={noteUrl(n.key)}
+                  target="_blank"
+                  rel="noopener"
+                  className="group py-6 grid grid-cols-1 md:grid-cols-[150px_1fr] gap-2 md:gap-8 items-start hover:bg-text-light/[0.02] transition-colors duration-300 px-2 -mx-2"
+                >
+                  <time dateTime={n.date} className="text-xs font-mono uppercase tracking-widest text-text-muted">
+                    {new Date(n.date).toLocaleDateString('ja-JP', { year: 'numeric', month: 'short', day: 'numeric' })}
+                  </time>
+                  <div>
+                    <h3 className="text-base md:text-lg font-bold leading-snug group-hover:text-accent transition-colors duration-300">
+                      {n.title_ja} <span aria-hidden="true">↗</span>
+                    </h3>
+                    <p className="mt-2 text-sm text-text-muted leading-relaxed">{n.summary_ja}</p>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-sm">
+            <a href={AUTHOR.links.note} target="_blank" rel="me noopener" className="text-accent hover:underline">
+              noteの記事一覧をすべて見る →
+            </a>
+          </p>
+        </section>
+      ) : (
+        <p className="mt-16 text-sm text-text-muted">
+          More articles (in Japanese) are on{' '}
+          <a href={AUTHOR.links.note} target="_blank" rel="me noopener" className="text-accent hover:underline">note.com</a>.
+        </p>
+      )}
     </div>
   );
 }

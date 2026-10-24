@@ -1,4 +1,5 @@
 import { posts } from '@/data/blog';
+import { notes, noteUrl } from '@/data/notes';
 import { projects } from '@/data/projects';
 import { services } from '@/data/services';
 import { trainingPrograms } from '@/data/training';
@@ -35,6 +36,9 @@ export function GET() {
     '',
     '## Articles',
     ...posts.map((p) => `- [${p.title}](${urlFor('ja', `blog/${p.slug}`)}) — ${p.date}, ${p.category}. ${p.excerpt}`),
+    '',
+    '## Articles on note.com (Japanese)',
+    ...notes.map((n) => `- [${n.title_ja}](${noteUrl(n.key)}) — ${n.date}. ${n.summary_ja}`),
     '',
     '## Projects',
     ...projects.map((p) => `- [${p.title}](${urlFor('ja', `projects/${p.slug}`)}) — ${p.tags.join(', ')}. ${p.description}`),
