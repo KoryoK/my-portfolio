@@ -17,9 +17,11 @@ import { projects } from '@/data/projects';
 import { posts } from '@/data/blog';
 import WorkDetail from '@/components/WorkDetail';
 import ContactForm from '@/components/ContactForm';
+import NoteIcon from '@/components/NoteIcon';
+import NoteList from '@/components/NoteList';
 import { trackEvent } from '@/lib/analytics';
 import { translations, skills, type Lang } from '@/lib/i18n';
-import { pathFor } from '@/lib/site';
+import { AUTHOR, pathFor } from '@/lib/site';
 
 export default function HomePage({ lang }: { lang: Lang }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -188,6 +190,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
                 <a href="https://www.linkedin.com/in/koryo-kakinoki" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors"><Linkedin size={16} />LinkedIn</a>
                 <a href="https://github.com/KoryoK" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors"><Github size={16} />GitHub</a>
                 <a href="https://x.com/kkcareer_ds" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors"><Twitter size={16} />X</a>
+                <a href={AUTHOR.links.note} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors"><NoteIcon size={16} />note</a>
               </div>
               <div className="text-text-muted uppercase tracking-widest text-xs">Kanagawa / Global</div>
             </div>
@@ -767,6 +770,20 @@ export default function HomePage({ lang }: { lang: Lang }) {
               </Link>
             ))}
           </div>
+
+          <div className="mt-24">
+            <h3 className="text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-tighter">
+              {isJa ? 'noteの記事' : 'Articles on note'}
+            </h3>
+            {isJa ? (
+              <NoteList limit={5} moreHref={pathFor(lang, 'blog') + '#note-list'} />
+            ) : (
+              <p className="mt-4 text-sm text-text-muted">
+                More articles (in Japanese) are on{' '}
+                <a href={AUTHOR.links.note} target="_blank" rel="me noopener" className="text-accent hover:underline">note.com</a>.
+              </p>
+            )}
+          </div>
         </div>
       </section>
 
@@ -807,6 +824,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
               { href: 'https://github.com/KoryoK',                          icon: <Github size={18} />,   label: 'GitHub',   color: 'bg-[#24292e] hover:bg-[#3a3f44] text-white border-[#24292e]' },
               { href: 'https://x.com/kkcareer_ds',                          icon: <Twitter size={18} />,  label: 'X',        color: 'bg-black hover:bg-neutral-900 text-white border-black' },
               { href: 'https://www.linkedin.com/in/koryo-kakinoki',         icon: <Linkedin size={18} />, label: 'LinkedIn', color: 'bg-[#0A66C2] hover:bg-[#0958a8] text-white border-[#0A66C2]' },
+              { href: AUTHOR.links.note,                                   icon: <NoteIcon size={18} />, label: 'note',     color: 'bg-[#41C9B4] hover:bg-[#35b3a0] text-black border-[#41C9B4]' },
             ].map(({ href, icon, label, color }) => (
               <a
                 key={label}
