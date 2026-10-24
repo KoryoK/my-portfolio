@@ -1,13 +1,15 @@
 /**
  * note.com articles listed on the Japanese blog index. Japanese only: the articles
  * themselves are Japanese, so the English edition links to the note profile instead.
- * Free articles only; blog posts that already carry a `link` are not repeated here.
+ * Paid articles carry `price`; blog posts that already carry a `link` are not repeated here.
  */
 export interface NoteEntry {
   key: string; // note.com/brainy_phlox8948/n/<key>
   title_ja: string;
   date: string; // ISO YYYY-MM-DD, publish date on note
   summary_ja: string;
+  /** JPY, only for paid articles; the page labels them so readers know before clicking. */
+  price?: number;
 }
 
 export const noteUrl = (key: string) => `https://note.com/brainy_phlox8948/n/${key}`;
@@ -32,6 +34,13 @@ export const notes: NoteEntry[] = [
     summary_ja: '記事の自動投稿の前に止める場所を決め、公開承認を二重にロックする設計を書いた。設計までで、自動投稿は未検証。',
   },
   {
+    key: 'n80dab41e2a90',
+    title_ja: 'Claudeのトークンが切れても、仕事は止めない――AIの引き継ぎを3つの記録ファイルで作った話',
+    date: '2026-10-13',
+    summary_ja: 'Obsidian、Claude Code、Codexで、AIの作業を引き継ぐための3つの記録ファイルを作った話。',
+    price: 500,
+  },
+  {
     key: 'n460a3b89ab14',
     title_ja: '検索できたのに答えが違う――RAGの検索結果・LLMへの入力・回答を同じ実行で並べて確かめる',
     date: '2026-10-07',
@@ -54,6 +63,13 @@ export const notes: NoteEntry[] = [
     title_ja: '【記入例＋動くツール】「このExcel作業を自動化して」を9項目の整理シートに変えて、そのとおりに集計ツールを作った',
     date: '2026-09-17',
     summary_ja: '自動化の依頼を9項目の整理シートに落とし込み、その内容どおりに集計ツールを作った。',
+  },
+  {
+    key: 'nb3c3b08a4cc5',
+    title_ja: '「AIは間違う」で終わらせない――配って使えるAI回答検証ワークと講師用解答・チェックリスト',
+    date: '2026-09-12',
+    summary_ja: '研修で配って使える、AI回答の検証ワークと、講師用の解答・チェックリスト。',
+    price: 300,
   },
   {
     key: 'n2ad8c38c3478',

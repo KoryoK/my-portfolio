@@ -62,7 +62,7 @@ export default function BlogIndexView({ lang }: { lang: Lang }) {
         <section className="mt-20" aria-labelledby="note-list">
           <h2 id="note-list" className="text-2xl md:text-3xl font-bold tracking-tight">noteの記事</h2>
           <p className="mt-3 text-sm text-text-muted leading-relaxed">
-            note.comで公開している記事のうち、上のブログとは別に読めるものです。リンク先はnoteです。
+            note.comで公開している記事のうち、上のブログとは別に読めるものです。リンク先はnoteで、有料の記事には価格を付けています。
           </p>
           <ul className="mt-8 flex flex-col">
             {notes.map((n) => (
@@ -79,6 +79,11 @@ export default function BlogIndexView({ lang }: { lang: Lang }) {
                   <div>
                     <h3 className="text-base md:text-lg font-bold leading-snug group-hover:text-accent transition-colors duration-300">
                       {n.title_ja} <span aria-hidden="true">↗</span>
+                      {n.price && (
+                        <span className="ml-2 align-middle text-[11px] font-mono font-normal border border-accent text-accent px-2 py-0.5 rounded-full whitespace-nowrap">
+                          有料 {n.price}円
+                        </span>
+                      )}
                     </h3>
                     <p className="mt-2 text-sm text-text-muted leading-relaxed">{n.summary_ja}</p>
                   </div>

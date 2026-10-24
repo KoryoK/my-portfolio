@@ -38,7 +38,7 @@ export function GET() {
     ...posts.map((p) => `- [${p.title}](${urlFor('ja', `blog/${p.slug}`)}) — ${p.date}, ${p.category}. ${p.excerpt}`),
     '',
     '## Articles on note.com (Japanese)',
-    ...notes.map((n) => `- [${n.title_ja}](${noteUrl(n.key)}) — ${n.date}. ${n.summary_ja}`),
+    ...notes.map((n) => `- [${n.title_ja}](${noteUrl(n.key)}) — ${n.date}${n.price ? `, paid (${n.price} JPY)` : ''}. ${n.summary_ja}`),
     '',
     '## Projects',
     ...projects.map((p) => `- [${p.title}](${urlFor('ja', `projects/${p.slug}`)}) — ${p.tags.join(', ')}. ${p.description}`),
