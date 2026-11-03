@@ -16,6 +16,12 @@ export const noteUrl = (key: string) => `https://note.com/brainy_phlox8948/n/${k
 
 export const notes: NoteEntry[] = [
   {
+    key: 'n45464b7bc6f4',
+    title_ja: '食事も筋トレも球技の予定も。1か所で見たくて、自分専用の記録アプリを作った',
+    date: '2026-11-03',
+    summary_ja: '食事とトレーニングを記録し、バレーやテニスの予定も1か所で見るために作った自分専用のアプリの話。画面はサンプルデータで、効果や継続は未確認。',
+  },
+  {
     key: 'nab5ec9e5d93e',
     title_ja: 'ChatGPT Dotsと進めた固定費の見直し。Supabase ProからFreeに切り替えた記録',
     date: '2026-10-24',
