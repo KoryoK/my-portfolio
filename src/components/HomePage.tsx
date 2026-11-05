@@ -8,7 +8,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'motion/react';
-import { Menu, X as CloseIcon, ArrowUpRight, Github, Linkedin, Twitter } from 'lucide-react';
+import { Menu, X as CloseIcon, ArrowUpRight, Github, Linkedin, Twitter, Coffee } from 'lucide-react';
 import { works } from '@/data/works';
 import type { Work } from '@/data/works';
 import { services } from '@/data/services';
@@ -191,6 +191,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
                 <a href="https://github.com/KoryoK" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors"><Github size={16} />GitHub</a>
                 <a href="https://x.com/kkcareer_ds" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors"><Twitter size={16} />X</a>
                 <a href={AUTHOR.links.note} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors"><NoteIcon size={16} />note</a>
+                <a href={AUTHOR.links.kofi} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent transition-colors"><Coffee size={16} />Ko-fi</a>
               </div>
               <div className="text-text-muted uppercase tracking-widest text-xs">Kanagawa / Global</div>
             </div>
@@ -825,6 +826,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
               { href: 'https://x.com/kkcareer_ds',                          icon: <Twitter size={18} />,  label: 'X',        color: 'bg-black hover:bg-neutral-900 text-white border-black' },
               { href: 'https://www.linkedin.com/in/koryo-kakinoki',         icon: <Linkedin size={18} />, label: 'LinkedIn', color: 'bg-[#0A66C2] hover:bg-[#0958a8] text-white border-[#0A66C2]' },
               { href: AUTHOR.links.note,                                   icon: <NoteIcon size={18} />, label: 'note',     color: 'bg-[#41C9B4] hover:bg-[#35b3a0] text-black border-[#41C9B4]' },
+              { href: AUTHOR.links.kofi,                                   icon: <Coffee size={18} />,   label: 'Ko-fi',    color: 'bg-[#FF5E5B] hover:bg-[#e8504d] text-black border-[#FF5E5B]' },
             ].map(({ href, icon, label, color }) => (
               <a
                 key={label}

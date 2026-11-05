@@ -11,6 +11,7 @@ export const AUTHOR = {
     github: 'https://github.com/KoryoK',
     x: 'https://x.com/kkcareer_ds',
     note: 'https://note.com/brainy_phlox8948',
+    kofi: 'https://ko-fi.com/koryokakinoki',
   },
 } as const;
 
